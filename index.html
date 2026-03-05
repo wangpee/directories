@@ -27,18 +27,14 @@ nav a:hover{color:#fff;background:rgba(255,255,255,.08);}
 .btn-ghost:hover{border-color:#fff;color:#fff;}
 .btn-primary{background:var(--green);color:#fff;border:none;padding:8px 17px;border-radius:6px;font-size:.8rem;font-weight:700;transition:background .18s;}
 .btn-primary:hover{background:var(--green-dark);}
-.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:5px;}
-.ham span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;}
-.mob-nav{display:none;position:fixed;inset:0;z-index:300;}
-.mob-nav.open{display:flex;}
-.mob-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);}
-.mob-drawer{position:absolute;right:0;top:0;bottom:0;width:270px;background:var(--ink);padding:20px 18px;display:flex;flex-direction:column;gap:5px;overflow-y:auto;animation:slideIn .25s ease;}
-@keyframes slideIn{from{transform:translateX(100%);}to{transform:translateX(0);}}
-.mob-close{background:none;border:none;color:#fff;font-size:1.3rem;align-self:flex-end;margin-bottom:8px;}
-.mob-drawer a{color:rgba(255,255,255,.7);padding:11px 13px;border-radius:6px;font-size:.92rem;display:block;transition:all .15s;}
-.mob-drawer a:hover{background:rgba(255,255,255,.09);color:#fff;}
-.mob-divider{height:1px;background:rgba(255,255,255,.09);margin:6px 0;}
-.mob-cta{background:var(--green)!important;color:#fff!important;font-weight:700;text-align:center;margin-top:6px;border-radius:6px;}
+.ham{display:flex;flex-direction:column;gap:5px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);border-radius:7px;padding:8px 9px;cursor:pointer;transition:background .18s;position:relative;z-index:210;}
+.ham:hover{background:rgba(255,255,255,.14);}
+.ham.active{background:rgba(12,124,68,.25);border-color:rgba(12,124,68,.5);}
+.ham span{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:all .25s ease;}
+.ham.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.ham.active span:nth-child(2){opacity:0;transform:scaleX(0);}
+.ham.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
 .hero{background:var(--ink);padding:0;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:520px;align-items:stretch;}
 .hero-left{padding:60px 52px 56px 52px;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;}
 .hero-right{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
@@ -503,6 +499,39 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
   .ct-channel:last-child{border-bottom:none;}
   .ct-row{grid-template-columns:1fr;}
 }
+
+/* =====================
+   COLLAPSIBLE NAV DROPDOWN
+===================== */
+.nav-dropdown{
+  display:none;
+  position:absolute;
+  top:calc(var(--hh) - 1px);
+  left:0;
+  width:260px;
+  background:var(--ink);
+  border:1px solid rgba(255,255,255,.1);
+  border-top:2px solid var(--green);
+  border-radius:0 0 12px 12px;
+  box-shadow:0 16px 48px rgba(0,0,0,.5);
+  z-index:205;
+  overflow:hidden;
+  animation:dropIn .2s ease both;
+}
+@keyframes dropIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.nav-dropdown.open{display:block;}
+.nav-dd-section{padding:10px 0;}
+.nav-dd-section+.nav-dd-section{border-top:1px solid rgba(255,255,255,.07);}
+.nav-dd-label{font-size:.6rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.3);padding:6px 18px 4px;}
+.nav-dd-link{display:flex;align-items:center;gap:11px;padding:10px 18px;color:rgba(255,255,255,.75);font-size:.85rem;font-weight:500;text-decoration:none;transition:all .15s;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:'Outfit',sans-serif;}
+.nav-dd-link:hover{background:rgba(255,255,255,.07);color:#fff;}
+.nav-dd-link .dd-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0;}
+.nav-dd-link .dd-label{flex:1;}
+.nav-dd-link .dd-arrow{font-size:.65rem;color:rgba(255,255,255,.25);}
+.nav-dd-link:hover .dd-arrow{color:rgba(255,255,255,.5);}
+.nav-dd-divider{height:1px;background:rgba(255,255,255,.07);margin:2px 0;}
+.nav-dd-cta{margin:10px 14px 14px;background:var(--green);color:#fff!important;border-radius:7px;font-weight:700!important;justify-content:center;padding:11px 18px!important;}
+.nav-dd-cta:hover{background:var(--green-dark)!important;}
 </style>
 </head>
 <body>
@@ -557,23 +586,31 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
     <button class="btn-ghost" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'})">Browse All</button>
     <button class="btn-primary" onclick="openModal()">+ List Your Business</button>
   </div>
-  <button class="ham" onclick="openMob()"><span></span><span></span><span></span></button>
+  <button class="ham" id="hamBtn" onclick="toggleNav()" aria-label="Navigation menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <!-- Collapsible nav dropdown -->
+  <div class="nav-dropdown" id="navDropdown">
+    <div class="nav-dd-section">
+      <div class="nav-dd-label">Browse by City</div>
+      <a href="#intl" class="nav-dd-link" onclick="closeNav()"><span class="dd-icon">🌍</span><span class="dd-label">International</span><span class="dd-arrow">›</span></a>
+      <a href="#lagos" class="nav-dd-link" onclick="closeNav()"><span class="dd-icon">🌊</span><span class="dd-label">Lagos</span><span class="dd-arrow">›</span></a>
+      <a href="#abuja" class="nav-dd-link" onclick="closeNav()"><span class="dd-icon">🏛️</span><span class="dd-label">Abuja (FCT)</span><span class="dd-arrow">›</span></a>
+      <a href="#ph" class="nav-dd-link" onclick="closeNav()"><span class="dd-icon">⚓</span><span class="dd-label">Port Harcourt</span><span class="dd-arrow">›</span></a>
+      <a href="#others" class="nav-dd-link" onclick="closeNav()"><span class="dd-icon">🗺️</span><span class="dd-label">Other Cities</span><span class="dd-arrow">›</span></a>
+      <a href="#national" class="nav-dd-link" onclick="closeNav()"><span class="dd-icon">🇳🇬</span><span class="dd-label">Nationwide</span><span class="dd-arrow">›</span></a>
+    </div>
+    <div class="nav-dd-section">
+      <div class="nav-dd-label">Services</div>
+      <button class="nav-dd-link" onclick="closeNav();openBooking(null);"><span class="dd-icon">🚗</span><span class="dd-label">Request a Vehicle</span><span class="dd-arrow">›</span></button>
+      <button class="nav-dd-link" onclick="closeNav();openAbout();"><span class="dd-icon">ℹ️</span><span class="dd-label">About DriveNG</span><span class="dd-arrow">›</span></button>
+      <button class="nav-dd-link" onclick="closeNav();openContact();"><span class="dd-icon">💬</span><span class="dd-label">Contact Us</span><span class="dd-arrow">›</span></button>
+    </div>
+    <button class="nav-dd-link nav-dd-cta" onclick="closeNav();openModal();">+ List Your Business Free</button>
+  </div>
 </header>
 
-<div class="mob-nav" id="mobNav">
-  <div class="mob-overlay" onclick="closeMob()"></div>
-  <nav class="mob-drawer">
-    <button class="mob-close" onclick="closeMob()">✕</button>
-    <a href="#intl" onclick="closeMob()">🌍 International</a>
-    <a href="#lagos" onclick="closeMob()">🌊 Lagos</a>
-    <a href="#abuja" onclick="closeMob()">🏛️ Abuja</a>
-    <a href="#ph" onclick="closeMob()">⚓ Port Harcourt</a>
-    <a href="#others" onclick="closeMob()">🗺️ Other Cities</a>
-    <a href="#national" onclick="closeMob()">🇳🇬 Nationwide</a>
-    <div class="mob-divider"></div>
-    <a href="javascript:void(0)" class="mob-cta" onclick="closeMob();openModal();">+ List Your Business Free</a>
-  </nav>
-</div>
+
 
 <section class="hero">
   <!-- LEFT: Text content -->
@@ -716,7 +753,6 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
         <path d="M430,85 L426,162 L434,162 L438,86 Z" fill="#1a1a18"/>
         <path d="M514,97 L522,128 L524,162 L516,162 L512,128 L506,98 Z" fill="#1a1a18"/>
         <path d="M72,200 L76,215 Q78,228 88,235 L130,242 L130,220 L100,215 L85,200 Z" fill="#1e1e1c"/>
-        <path d="M88,185 L82,200 L85,200 L100,188 Z" fill="#252520"/>
         <rect x="88" y="185" width="55" height="22" rx="4" fill="#161614"/>
         <rect x="90" y="187" width="51" height="3" rx="1.5" fill="#252520"/>
         <rect x="90" y="192" width="51" height="3" rx="1.5" fill="#252520"/>
@@ -734,19 +770,15 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
         <ellipse cx="55" cy="255" rx="45" ry="12" fill="#a0c0ff" opacity="0.06"/>
         <ellipse cx="90" cy="215" rx="10" ry="6" fill="#1a1a18" stroke="#333330" stroke-width="1"/>
         <ellipse cx="90" cy="215" rx="7" ry="4" fill="#c8d8ff" opacity="0.5"/>
-        <path d="M150,215 L148,230 L90,235 L88,220 Z" fill="#141412"/>
-        <path d="M152,218 L150,229 L92,233 L93,222 Z" fill="#0a0a08"/>
         <path d="M628,200 L624,215 Q622,228 612,235 L570,242 L570,220 L600,215 L615,200 Z" fill="#1e1e1c"/>
         <path d="M580,155 L618,162 L622,182 L618,185 L575,180 Z" fill="#1a0808"/>
         <path d="M588,165 Q600,163 615,168 L614,172 Q600,170 587,172 Z" fill="#ff2010" opacity="0.95"/>
         <ellipse cx="602" cy="174" r="10" fill="#0a0000"/>
         <ellipse cx="602" cy="174" r="8" fill="url(#tlGlow)" opacity="0.8"/>
         <ellipse cx="602" cy="174" r="4" fill="#ff4030" opacity="0.9"/>
-        <ellipse cx="645" cy="255" rx="40" ry="10" fill="#ff2010" opacity="0.06"/>
         <ellipse cx="600" cy="240" rx="9" ry="6" fill="#0d0d0c" stroke="url(#chromeGrad)" stroke-width="1.5"/>
         <ellipse cx="615" cy="241" rx="7" ry="5" fill="#0d0d0c" stroke="url(#chromeGrad)" stroke-width="1.2"/>
         <circle cx="175" cy="258" r="52" fill="url(#tyreGrad)"/>
-        <circle cx="175" cy="258" r="52" fill="none" stroke="#2a2a28" stroke-width="2"/>
         <circle cx="175" cy="258" r="48" fill="#0f0f0e"/>
         <circle cx="175" cy="258" r="36" fill="url(#rimGrad)"/>
         <circle cx="175" cy="258" r="34" fill="#252520"/>
@@ -768,7 +800,6 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
         <path d="M175,225 Q196,225 208,236 L204,240 Q195,232 175,232 Q155,232 146,240 L142,236 Q154,225 175,225 Z" fill="#cc1a00" opacity="0.85"/>
         <ellipse cx="175" cy="308" rx="48" ry="8" fill="#000" opacity="0.4"/>
         <circle cx="525" cy="258" r="52" fill="url(#tyreGrad)"/>
-        <circle cx="525" cy="258" r="52" fill="none" stroke="#2a2a28" stroke-width="2"/>
         <circle cx="525" cy="258" r="48" fill="#0f0f0e"/>
         <circle cx="525" cy="258" r="36" fill="url(#rimGrad)"/>
         <circle cx="525" cy="258" r="34" fill="#252520"/>
@@ -790,15 +821,12 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
         <path d="M525,225 Q546,225 558,236 L554,240 Q545,232 525,232 Q505,232 496,240 L492,236 Q504,225 525,225 Z" fill="#cc1a00" opacity="0.85"/>
         <ellipse cx="525" cy="308" rx="48" ry="8" fill="#000" opacity="0.4"/>
         <rect x="220" y="84" width="260" height="6" rx="3" fill="#1a3028" opacity="0.6"/>
-        <rect x="225" y="85" width="250" height="4" rx="2" fill="url(#winGrad)" opacity="0.4"/>
         <rect x="418" y="60" width="2" height="26" rx="1" fill="#333330"/>
         <circle cx="419" cy="60" r="3" fill="#555550"/>
-        <path d="M148,155 L140,148 L135,152 L135,165 L148,162 Z" fill="#1e1e1c" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-        <path d="M550,155 L560,148 L565,152 L565,165 L550,162 Z" fill="#1e1e1c" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-        <line x1="50" y1="308" x2="650" y2="308" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <path d="M148,155 L140,148 L135,152 L135,165 L148,162 Z" fill="#1e1e1c"/>
+        <path d="M550,155 L560,148 L565,152 L565,165 L550,162 Z" fill="#1e1e1c"/>
         <ellipse cx="175" cy="308" rx="52" ry="4" fill="#0C7C44" opacity="0.12"/>
         <ellipse cx="525" cy="308" rx="52" ry="4" fill="#0C7C44" opacity="0.12"/>
-        <path d="M240,94 L460,93 L455,98 L245,98 Z" fill="white" opacity="0.04"/>
       </svg>
     </div>
 
@@ -1447,8 +1475,36 @@ window.addEventListener('scroll',()=>{
   btt.classList.toggle('show',window.scrollY>400);
 });
 /* MOB NAV */
-function openMob(){document.getElementById('mobNav').classList.add('open');document.body.style.overflow='hidden';}
-function closeMob(){document.getElementById('mobNav').classList.remove('open');document.body.style.overflow='';}
+function toggleNav(){
+  var dd=document.getElementById('navDropdown');
+  var btn=document.getElementById('hamBtn');
+  if(!dd||!btn) return;
+  var isOpen=dd.classList.contains('open');
+  if(isOpen){ closeNav(); } else { openNav(); }
+}
+function openNav(){
+  var dd=document.getElementById('navDropdown');
+  var btn=document.getElementById('hamBtn');
+  if(dd) dd.classList.add('open');
+  if(btn){ btn.classList.add('active'); btn.setAttribute('aria-expanded','true'); }
+}
+function closeNav(){
+  var dd=document.getElementById('navDropdown');
+  var btn=document.getElementById('hamBtn');
+  if(dd) dd.classList.remove('open');
+  if(btn){ btn.classList.remove('active'); btn.setAttribute('aria-expanded','false'); }
+}
+// Keep old openMob/closeMob as aliases for mobile drawer links that still reference them
+function openMob(){ openNav(); }
+function closeMob(){ closeNav(); }
+// Close dropdown when clicking outside
+document.addEventListener('click',function(e){
+  var dd=document.getElementById('navDropdown');
+  var btn=document.getElementById('hamBtn');
+  if(dd && btn && !btn.contains(e.target) && !dd.contains(e.target)){
+    closeNav();
+  }
+});
 /* FLEET */
 function toggleFleet(btn){
   const fb=btn.closest('.fleet-section').querySelector('.fleet-body');
@@ -2081,7 +2137,7 @@ function submitContact(){
 
     <!-- Contact channels -->
     <div class="ct-channels">
-      <div class="ct-channel"><div class="ct-ch-icon">📧</div><div><div class="ct-ch-label">Email</div><div class="ct-ch-val">rentaldir3@gmail.com</div></div></div>
+      <div class="ct-channel"><div class="ct-ch-icon">📧</div><div><div class="ct-ch-label">Email</div><div class="ct-ch-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1e6c7b706a7f727a776c2d5e79737f7772307d7173">[email&#160;protected]</a></div></div></div>
       <div class="ct-channel"><div class="ct-ch-icon">📍</div><div><div class="ct-ch-label">Based In</div><div class="ct-ch-val">Nigeria 🇳🇬</div></div></div>
       <div class="ct-channel"><div class="ct-ch-icon">⏱️</div><div><div class="ct-ch-label">Response Time</div><div class="ct-ch-val">Within 24 hours</div></div></div>
     </div>
@@ -2151,11 +2207,4 @@ function submitContact(){
       </div>
 
       <button class="btn-ct-submit" id="ct-submit" onclick="submitContact()">Send Message →</button>
-      <div class="ct-footnote">🔒 Your information is kept private and only used to respond to your enquiry.</div>
-    </div>
-
-  </div>
-</div>
-
-</body>
-</html>
+      <div class="ct-footnote">🔒 Yo
