@@ -12,8 +12,12 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 a{text-decoration:none;color:inherit;}button{cursor:pointer;font-family:inherit;}
 #sp{position:fixed;top:0;left:0;right:0;height:3px;background:var(--green);transform-origin:left;transform:scaleX(0);z-index:9999;}
 header{background:var(--ink);height:var(--hh);display:flex;align-items:center;padding:0 40px;position:sticky;top:0;z-index:200;border-bottom:2.5px solid var(--green);}
-.logo{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:#fff;display:flex;align-items:center;gap:9px;}
-.logo-box{width:32px;height:32px;background:var(--green);border-radius:7px;display:flex;align-items:center;justify-content:center;}
+.logo{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:#fff;display:flex;align-items:center;gap:10px;letter-spacing:-.02em;}
+.logo-mark{display:flex;align-items:center;flex-shrink:0;filter:drop-shadow(0 2px 8px rgba(12,124,68,.4));}
+.logo-text{display:flex;align-items:baseline;gap:1px;}
+.logo-drive{color:#fff;font-weight:900;}
+.logo-ng{color:var(--gold);font-weight:900;position:relative;}
+.logo-ng::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:2px;background:var(--gold);border-radius:1px;opacity:.7;}
 .logo em{font-style:normal;color:var(--gold);}
 nav{display:flex;align-items:center;gap:2px;margin-left:28px;}
 nav a{color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;padding:6px 11px;border-radius:5px;transition:all .18s;}
@@ -363,199 +367,191 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
   .bk-how-step:last-child{border-bottom:none;}
 }
 
-.hdr-car{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:0;animation:hdrCarIn 1s .3s ease both;}
-@keyframes hdrCarIn{from{opacity:0;transform:translate(calc(-50% + 18px),-50%);}to{opacity:1;transform:translate(-50%,-50%);}}
-.hdr-car svg{display:block;}
-/* subtle headlight beam sweeping left */
-.hdr-hl{animation:hlPulse 3.5s ease-in-out infinite;}
-.hdr-tl{animation:tlPulse 3.5s ease-in-out infinite 0.4s;}
-@keyframes hlPulse{0%,100%{opacity:.7;}50%{opacity:1;}}
-@keyframes tlPulse{0%,100%{opacity:.6;}50%{opacity:.95;}}
-/* speed lines behind the car */
-.hdr-speed{animation:speedFade 2.5s ease-in-out infinite;}
-@keyframes speedFade{0%,100%{opacity:.18;}50%{opacity:.35;}}
+
+/* =====================
+   ABOUT MODAL
+===================== */
+.abt-overlay{display:none;position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.65);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
+.abt-overlay.open{display:flex;}
+.abt-modal{background:#fff;border-radius:16px;width:100%;max-width:760px;max-height:92vh;overflow-y:auto;box-shadow:0 32px 100px rgba(0,0,0,.35);animation:mIn .3s cubic-bezier(.34,1.56,.64,1) both;position:relative;}
+
+/* Hero band */
+.abt-hero{background:var(--ink);border-radius:16px 16px 0 0;padding:52px 48px 44px;position:relative;overflow:hidden;}
+.abt-hero::before{content:'';position:absolute;left:-80px;top:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(12,124,68,.25) 0%,transparent 65%);pointer-events:none;}
+.abt-hero::after{content:'';position:absolute;right:-40px;bottom:-40px;width:280px;height:280px;background:radial-gradient(circle,rgba(201,146,10,.1) 0%,transparent 65%);pointer-events:none;}
+.abt-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);border:none;color:#fff;width:34px;height:34px;border-radius:8px;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;}
+.abt-close:hover{background:rgba(255,255,255,.2);}
+.abt-hero-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(12,124,68,.2);border:1px solid rgba(12,124,68,.4);color:#5de09a;padding:5px 13px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;position:relative;z-index:1;}
+.abt-hero h2{font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.6rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:14px;position:relative;z-index:1;}
+.abt-hero h2 i{font-style:italic;color:var(--gold);}
+.abt-hero-lead{color:rgba(255,255,255,.65);font-size:1rem;line-height:1.75;max-width:560px;position:relative;z-index:1;}
+
+/* Stats bar */
+.abt-stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);}
+.abt-stat{padding:20px 18px;text-align:center;border-right:1px solid var(--border);}
+.abt-stat:last-child{border-right:none;}
+.abt-stat-n{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:900;color:var(--green);line-height:1;}
+.abt-stat-l{font-size:.68rem;text-transform:uppercase;letter-spacing:.8px;color:var(--gray);margin-top:4px;}
+
+/* Body */
+.abt-body{padding:36px 48px 44px;}
+.abt-section{margin-bottom:32px;}
+.abt-section:last-child{margin-bottom:0;}
+.abt-section-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--green);margin-bottom:10px;}
+.abt-section h3{font-family:'Fraunces',serif;font-size:1.18rem;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.3;}
+.abt-section p{font-size:.9rem;color:#4a4a48;line-height:1.8;}
+.abt-section p + p{margin-top:10px;}
+
+/* How it works steps */
+.abt-steps{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+.abt-step{background:var(--gray-light);border-radius:10px;padding:16px 18px;border:1px solid var(--border);display:flex;gap:13px;align-items:flex-start;}
+.abt-step-num{width:28px;height:28px;background:var(--green);color:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0;}
+.abt-step-title{font-weight:700;font-size:.86rem;margin-bottom:3px;}
+.abt-step-desc{font-size:.78rem;color:var(--gray);line-height:1.5;}
+
+/* Values grid */
+.abt-values{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:14px;}
+.abt-value{background:var(--green-light);border:1px solid #b2dcbf;border-radius:10px;padding:16px 15px;text-align:center;}
+.abt-value-icon{font-size:1.4rem;margin-bottom:7px;}
+.abt-value-title{font-weight:700;font-size:.84rem;color:var(--ink);margin-bottom:4px;}
+.abt-value-desc{font-size:.74rem;color:var(--gray);line-height:1.5;}
+
+/* CTA band */
+.abt-cta{background:linear-gradient(135deg,var(--ink) 0%,#1a2e20 100%);border-radius:10px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:32px;}
+.abt-cta-text h4{font-family:'Fraunces',serif;color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:5px;}
+.abt-cta-text p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.5;}
+.abt-cta-btns{display:flex;gap:9px;flex-shrink:0;}
+.btn-abt-book{background:var(--green);color:#fff;border:none;padding:10px 20px;border-radius:7px;font-size:.84rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+.btn-abt-book:hover{background:var(--green-dark);}
+.btn-abt-list{background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);border:1.5px solid rgba(255,255,255,.18);padding:9px 18px;border-radius:7px;font-size:.84rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+.btn-abt-list:hover{background:rgba(255,255,255,.14);color:#fff;}
+
+@media(max-width:620px){
+  .abt-hero{padding:36px 22px 30px;}
+  .abt-body{padding:24px 22px 32px;}
+  .abt-stats{grid-template-columns:1fr 1fr;}
+  .abt-stat{border-bottom:1px solid var(--border);}
+  .abt-steps{grid-template-columns:1fr;}
+  .abt-values{grid-template-columns:1fr 1fr;}
+  .abt-cta{flex-direction:column;text-align:center;}
+  .abt-cta-btns{width:100%;justify-content:center;}
+}
+@media(max-width:400px){
+  .abt-values{grid-template-columns:1fr;}
+}
+
+/* =====================
+   CONTACT MODAL
+===================== */
+.ct-overlay{display:none;position:fixed;inset:0;z-index:1300;background:rgba(0,0,0,.65);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px;}
+.ct-overlay.open{display:flex;}
+.ct-modal{background:#fff;border-radius:16px;width:100%;max-width:620px;max-height:92vh;overflow-y:auto;box-shadow:0 32px 100px rgba(0,0,0,.3);animation:mIn .28s cubic-bezier(.34,1.56,.64,1) both;position:relative;}
+
+/* Header */
+.ct-hdr{background:var(--ink);border-radius:16px 16px 0 0;padding:36px 40px 30px;position:relative;overflow:hidden;}
+.ct-hdr::before{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(201,146,10,.12) 0%,transparent 65%);pointer-events:none;}
+.ct-hdr::after{content:'';position:absolute;left:-60px;bottom:-40px;width:280px;height:280px;background:radial-gradient(circle,rgba(12,124,68,.18) 0%,transparent 65%);pointer-events:none;}
+.ct-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.1);border:none;color:#fff;width:34px;height:34px;border-radius:8px;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;}
+.ct-close:hover{background:rgba(255,255,255,.22);}
+.ct-hdr-icon{font-size:2rem;margin-bottom:12px;position:relative;z-index:1;}
+.ct-hdr h2{font-family:'Fraunces',serif;font-size:1.55rem;font-weight:700;color:#fff;margin-bottom:7px;position:relative;z-index:1;}
+.ct-hdr-sub{color:rgba(255,255,255,.55);font-size:.85rem;line-height:1.6;max-width:420px;position:relative;z-index:1;}
+
+/* Contact channels strip */
+.ct-channels{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border);}
+.ct-channel{padding:14px 16px;display:flex;align-items:center;gap:10px;border-right:1px solid var(--border);}
+.ct-channel:last-child{border-right:none;}
+.ct-ch-icon{font-size:1.1rem;flex-shrink:0;}
+.ct-ch-label{font-size:.67rem;text-transform:uppercase;letter-spacing:.8px;font-weight:700;color:var(--gray);margin-bottom:2px;}
+.ct-ch-val{font-size:.78rem;font-weight:600;color:var(--ink);}
+
+/* Form body */
+.ct-body{padding:28px 40px 36px;}
+.ct-notice{background:var(--green-light);border:1px solid #b2dcbf;border-radius:8px;padding:10px 14px;font-size:.79rem;color:#145a32;line-height:1.6;margin-bottom:22px;display:flex;gap:9px;align-items:center;}
+.ct-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:14px;}
+.ct-row.full{grid-template-columns:1fr;}
+.ct-fg{display:flex;flex-direction:column;gap:5px;}
+.ct-fg label{font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--gray);}
+.ct-fg input,.ct-fg select,.ct-fg textarea{padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;color:var(--ink);outline:none;transition:border-color .18s,box-shadow .18s;background:var(--white);}
+.ct-fg input:focus,.ct-fg select:focus,.ct-fg textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(12,124,68,.1);}
+.ct-fg textarea{resize:vertical;min-height:110px;line-height:1.6;}
+.ct-fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 11 11'%3E%3Cpath fill='%236b6b68' d='M5.5 7L1 2.5h9z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px;}
+.ct-err{font-size:.72rem;color:#dc2626;margin-top:3px;display:none;}
+.ct-err.show{display:block;}
+.ct-invalid{border-color:#dc2626!important;}
+.btn-ct-submit{width:100%;background:var(--green);color:#fff;border:none;padding:13px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;transition:background .18s;cursor:pointer;margin-top:6px;}
+.btn-ct-submit:hover{background:var(--green-dark);}
+.btn-ct-submit:disabled{background:var(--border);color:var(--gray);cursor:not-allowed;}
+.ct-footnote{text-align:center;font-size:.72rem;color:var(--gray);margin-top:10px;line-height:1.6;}
+
+/* Success */
+.ct-success{display:none;padding:50px 40px;text-align:center;}
+.ct-success.show{display:block;}
+.ct-success-icon{font-size:3.5rem;margin-bottom:16px;animation:bounce .5s .1s both;}
+.ct-success-title{font-family:'Fraunces',serif;font-size:1.55rem;font-weight:700;margin-bottom:9px;}
+.ct-success-sub{color:var(--gray);font-size:.9rem;line-height:1.75;max-width:400px;margin:0 auto 24px;}
+.ct-sdet{background:var(--green-light);border:1px solid #b8ddc6;border-radius:9px;padding:14px 18px;margin-bottom:22px;text-align:left;max-width:380px;margin-left:auto;margin-right:auto;}
+.ct-sdet-row{display:flex;justify-content:space-between;font-size:.81rem;margin-bottom:7px;}
+.ct-sdet-row:last-child{margin-bottom:0;}
+.btn-ct-close{background:var(--green);color:#fff;border:none;padding:11px 32px;border-radius:7px;font-size:.9rem;font-weight:700;cursor:pointer;}
+.btn-ct-close:hover{background:var(--green-dark);}
+
+@media(max-width:560px){
+  .ct-hdr,.ct-body{padding:26px 20px;}
+  .ct-channels{grid-template-columns:1fr;}
+  .ct-channel{border-right:none;border-bottom:1px solid var(--border);}
+  .ct-channel:last-child{border-bottom:none;}
+  .ct-row{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 <div id="sp"></div>
 
 <header>
-  <a href="#top" class="logo" id="top"><div class="logo-box">🚗</div>Drive<em>NG</em></a>
+  <a href="#top" class="logo" id="top">
+    <div class="logo-mark"><svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="lgShield" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#0faa5e"/>
+      <stop offset="100%" stop-color="#085c32"/>
+    </linearGradient>
+    <linearGradient id="lgArrow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#C9920A"/>
+      <stop offset="100%" stop-color="#f5b830"/>
+    </linearGradient>
+    <filter id="lgGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Shield body -->
+  <path d="M19,2 L34,8 L34,21 Q34,31 19,36 Q4,31 4,21 L4,8 Z" fill="url(#lgShield)"/>
+  <!-- Shield inner bevel -->
+  <path d="M19,4.5 L32,10 L32,21 Q32,29.5 19,34 Q6,29.5 6,21 L6,10 Z" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+  <!-- Road / speed lines (left side) -->
+  <rect x="8" y="18.5" width="7" height="1.2" rx=".6" fill="rgba(255,255,255,.3)"/>
+  <rect x="8" y="21.5" width="5" height="1" rx=".5" fill="rgba(255,255,255,.18)"/>
+  <!-- Stylised D + forward arrow -->
+  <!-- D vertical bar -->
+  <rect x="12" y="13" width="3" height="13" rx="1.5" fill="white"/>
+  <!-- D curved body -->
+  <path d="M14.5,13 Q23,13 23,19.5 Q23,26 14.5,26" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <!-- Gold chevron arrow cutting forward -->
+  <path d="M20,16.5 L27,19.5 L20,22.5" fill="none" stroke="url(#lgArrow)" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round" filter="url(#lgGlow)"/>
+  <!-- Gold dot accent -->
+  <circle cx="27.5" cy="19.5" r="1.8" fill="url(#lgArrow)"/>
+  <!-- Bottom shield point gold accent line -->
+  <path d="M15,33 L19,36 L23,33" fill="none" stroke="url(#lgArrow)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>
+    <div class="logo-text"><span class="logo-drive">Drive</span><span class="logo-ng">NG</span></div>
+  </a>
   <nav>
     <a href="#intl">International</a><a href="#lagos">Lagos</a><a href="#abuja">Abuja</a>
     <a href="#ph">Port Harcourt</a><a href="#others">Other Cities</a><a href="#national">Nationwide</a>
   </nav>
 
-  <!-- ── Inline header car ── -->
-  <div class="hdr-car" aria-hidden="true">
-    <svg width="210" height="46" viewBox="0 0 210 46" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="hcBody" x1="0" y1="0" x2=".2" y2="1">
-          <stop offset="0%" stop-color="#3a3a38"/>
-          <stop offset="60%" stop-color="#252522"/>
-          <stop offset="100%" stop-color="#111110"/>
-        </linearGradient>
-        <linearGradient id="hcRoof" x1="0" y1="0" x2=".4" y2="1">
-          <stop offset="0%" stop-color="#484845"/>
-          <stop offset="100%" stop-color="#1e1e1c"/>
-        </linearGradient>
-        <linearGradient id="hcWin" x1="0" y1="0" x2=".3" y2="1">
-          <stop offset="0%" stop-color="#0d2b1a" stop-opacity=".95"/>
-          <stop offset="100%" stop-color="#060f0a" stop-opacity=".98"/>
-        </linearGradient>
-        <linearGradient id="hcChrome" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#aaa898"/>
-          <stop offset="50%" stop-color="#666660"/>
-          <stop offset="100%" stop-color="#333330"/>
-        </linearGradient>
-        <linearGradient id="hcAccent" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#0C7C44" stop-opacity="0"/>
-          <stop offset="35%" stop-color="#0C7C44" stop-opacity=".7"/>
-          <stop offset="65%" stop-color="#0C7C44" stop-opacity=".7"/>
-          <stop offset="100%" stop-color="#0C7C44" stop-opacity="0"/>
-        </linearGradient>
-        <linearGradient id="hcGold" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#C9920A" stop-opacity="0"/>
-          <stop offset="40%" stop-color="#C9920A" stop-opacity=".8"/>
-          <stop offset="100%" stop-color="#C9920A" stop-opacity="0"/>
-        </linearGradient>
-        <linearGradient id="hcStreak" x1="0" y1="0" x2="1" y2=".3">
-          <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
-          <stop offset="40%" stop-color="#fff" stop-opacity=".12"/>
-          <stop offset="60%" stop-color="#fff" stop-opacity=".22"/>
-          <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
-        </linearGradient>
-        <radialGradient id="hcTyre" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#2a2a28"/>
-          <stop offset="55%" stop-color="#141414"/>
-          <stop offset="100%" stop-color="#080808"/>
-        </radialGradient>
-        <radialGradient id="hcRim" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#888880"/>
-          <stop offset="45%" stop-color="#555550"/>
-          <stop offset="100%" stop-color="#333330"/>
-        </radialGradient>
-        <radialGradient id="hcHL" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#e0ecff"/>
-          <stop offset="55%" stop-color="#90b8ff" stop-opacity=".5"/>
-          <stop offset="100%" stop-color="#4080ff" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="hcTL" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#ff3822"/>
-          <stop offset="55%" stop-color="#ff1800" stop-opacity=".45"/>
-          <stop offset="100%" stop-color="#cc0000" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="hcGlow" cx="50%" cy="0%" r="80%">
-          <stop offset="0%" stop-color="#0C7C44" stop-opacity=".28"/>
-          <stop offset="100%" stop-color="#0C7C44" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="hcShadow" cx="50%" cy="0%" r="50%">
-          <stop offset="0%" stop-color="#000" stop-opacity=".45"/>
-          <stop offset="100%" stop-color="#000" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <g class="hdr-speed">
-        <line x1="2" y1="24" x2="26" y2="24" stroke="#0C7C44" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
-        <line x1="4" y1="29" x2="22" y2="29" stroke="#0C7C44" stroke-width=".8" stroke-linecap="round" opacity=".4"/>
-        <line x1="6" y1="19" x2="20" y2="19" stroke="#0C7C44" stroke-width=".6" stroke-linecap="round" opacity=".3"/>
-      </g>
-      <ellipse cx="108" cy="43" rx="88" ry="5" fill="url(#hcShadow)"/>
-      <ellipse cx="108" cy="40" rx="72" ry="4" fill="url(#hcGlow)"/>
-      <path d="M22,38 L22,30 L188,30 L188,38 Q148,41 108,41 Q68,41 22,38 Z" fill="url(#hcBody)"/>
-      <path d="M22,30 L24,24 Q26,19 32,16 L62,8 Q70,5 82,5 L128,5 Q140,5 148,8 L172,16 Q178,20 181,24 L188,30 Z" fill="url(#hcBody)"/>
-      <path d="M62,8 Q70,5 82,5 L128,5 Q140,5 148,8 L168,16 Q158,17 150,17 L146,9 Q140,6 128,6 L82,6 Q72,6 66,9 L60,17 Q52,17 44,16 Z" fill="url(#hcRoof)"/>
-      <path d="M36,24 Q80,20 108,20 Q138,20 174,24 L174,28 Q138,25 108,25 Q80,25 36,28 Z" fill="url(#hcStreak)"/>
-      <rect x="22" y="34" width="166" height="1.5" rx=".75" fill="url(#hcAccent)"/>
-      <rect x="22" y="36" width="166" height="1" rx=".5" fill="url(#hcGold)" opacity=".7"/>
-      <line x1="82" y1="6" x2="84" y2="30" stroke="rgba(255,255,255,.06)" stroke-width=".8"/>
-      <line x1="128" y1="6" x2="129" y2="30" stroke="rgba(255,255,255,.06)" stroke-width=".8"/>
-      <path d="M64,16 L60,17 L58,18 L64,9 Q68,6 80,6 L88,6 L84,16 Z" fill="url(#hcWin)" opacity=".9"/>
-      <path d="M84,16 L88,6 L122,6 L126,16 Z" fill="url(#hcWin)"/>
-      <path d="M126,16 L122,6 L130,6 Q140,6 146,9 L150,17 L148,17 L142,10 Q138,7 126,7 Z" fill="url(#hcWin)" opacity=".9"/>
-      <path d="M58,18 L57,28 Q60,29 66,29 L80,29 L82,17 Z" fill="url(#hcWin)" opacity=".85"/>
-      <path d="M86,17 L84,29 L126,29 L128,17 Z" fill="url(#hcWin)" opacity=".85"/>
-      <path d="M130,17 L129,29 L150,29 L153,21 L152,17 Z" fill="url(#hcWin)" opacity=".85"/>
-      <path d="M60,18 L64,18 L63,27 L58,27 Z" fill="white" opacity=".06"/>
-      <path d="M88,17 L100,17 L99,28 L87,28 Z" fill="white" opacity=".04"/>
-      <path d="M59,9 L56,17 L58,29 L60,29 L58,18 L62,9 Z" fill="#1a1a18"/>
-      <path d="M82,5 L84,29 L86,29 L84,5 Z" fill="#1a1a18"/>
-      <path d="M128,5 L128,29 L130,29 L130,5 Z" fill="#1a1a18"/>
-      <path d="M149,8 L152,17 L153,29 L150,29 L149,17 L146,9 Z" fill="#1a1a18"/>
-      <rect x="76" y="23" width="10" height="2.5" rx="1.25" fill="url(#hcChrome)" opacity=".85"/>
-      <rect x="114" y="23" width="10" height="2.5" rx="1.25" fill="url(#hcChrome)" opacity=".85"/>
-      <path d="M22,30 L23,35 Q24,38 28,39 L42,40 L42,34 L32,33 L26,30 Z" fill="#1e1e1c"/>
-      <rect x="24" y="24" width="20" height="8" rx="2" fill="#161614"/>
-      <rect x="25" y="25" width="18" height="1.8" rx=".9" fill="#242420"/>
-      <rect x="25" y="28" width="18" height="1.8" rx=".9" fill="#242420"/>
-      <rect x="24" y="24" width="20" height="8" rx="2" fill="none" stroke="url(#hcChrome)" stroke-width=".8"/>
-      <circle cx="34" cy="28" r="2.5" fill="#1a1a18" stroke="url(#hcChrome)" stroke-width=".6"/>
-      <circle cx="34" cy="28" r="1.2" fill="url(#hcChrome)"/>
-      <path d="M22,19 L24,28 L44,29 L45,21 L36,18 Z" fill="#1a1a18"/>
-      <path d="M24,26 Q32,24 42,26 L42,27.5 Q32,26.5 24,27.5 Z" fill="#ddeeff" opacity=".9"/>
-      <circle cx="32" cy="23" r="5.5" fill="#0a0a08"/>
-      <circle cx="32" cy="23" r="4.2" fill="url(#hcHL)" opacity=".75" class="hdr-hl"/>
-      <circle cx="32" cy="23" r="2.5" fill="#c8d8ff" opacity=".9" class="hdr-hl"/>
-      <circle cx="32" cy="23" r="1.3" fill="white" opacity=".95" class="hdr-hl"/>
-      <ellipse cx="10" cy="41" rx="14" ry="3" fill="#90b8ff" opacity=".07"/>
-      <ellipse cx="28" cy="34" rx="4" ry="2.5" fill="#1a1a18" stroke="#333330" stroke-width=".5"/>
-      <ellipse cx="28" cy="34" rx="2.8" ry="1.7" fill="#c8d8ff" opacity=".4"/>
-      <path d="M188,30 L187,35 Q186,38 182,39 L168,40 L168,34 L178,33 L184,30 Z" fill="#1e1e1c"/>
-      <path d="M174,19 L186,21 L187,28 L186,29 L172,28 Z" fill="#1a0808"/>
-      <path d="M176,21 Q182,20 185,22 L185,23.5 Q182,22.5 176,22.5 Z" fill="#ff2010" opacity=".95"/>
-      <circle cx="181" cy="25" r="4" fill="#0a0000"/>
-      <circle cx="181" cy="25" r="3.2" fill="url(#hcTL)" opacity=".85" class="hdr-tl"/>
-      <circle cx="181" cy="25" r="1.6" fill="#ff4030" opacity=".9" class="hdr-tl"/>
-      <ellipse cx="198" cy="41" rx="12" ry="3" fill="#ff2010" opacity=".07"/>
-      <ellipse cx="180" cy="39" rx="3" ry="2" fill="#0d0d0c" stroke="url(#hcChrome)" stroke-width=".7"/>
-      <ellipse cx="185" cy="39.5" rx="2.5" ry="1.7" fill="#0d0d0c" stroke="url(#hcChrome)" stroke-width=".6"/>
-      <path d="M44,19 L41,17 L40,19 L40,23 L44,22 Z" fill="#1e1e1c"/>
-      <path d="M166,19 L169,17 L170,19 L170,23 L166,22 Z" fill="#1e1e1c"/>
-      <rect x="126" y="1" width=".8" height="6" rx=".4" fill="#444440"/>
-      <circle cx="126.4" cy="1" r="1.1" fill="#555550"/>
-      <circle cx="54" cy="40" r="14" fill="url(#hcTyre)"/>
-      <circle cx="54" cy="40" r="13" fill="none" stroke="#2a2a28" stroke-width=".8"/>
-      <circle cx="54" cy="40" r="11" fill="#0f0f0e"/>
-      <circle cx="54" cy="40" r="8.5" fill="url(#hcRim)"/>
-      <circle cx="54" cy="40" r="8" fill="#252520"/>
-      <g transform="translate(54,40)">
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(45)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(90)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(135)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(225)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(270)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(315)"/>
-      </g>
-      <circle cx="54" cy="40" r="4.5" fill="#1a1a18" stroke="#555550" stroke-width=".8"/>
-      <circle cx="54" cy="40" r="2.2" fill="url(#hcRim)"/>
-      <circle cx="54" cy="40" r="1.4" fill="#222220" stroke="#888880" stroke-width=".5"/>
-      <path d="M54,31 Q60,31 63,34 L62,35.5 Q59,33 54,33 Q49,33 46,35.5 L45,34 Q48,31 54,31 Z" fill="#cc1a00" opacity=".8"/>
-      <circle cx="158" cy="40" r="14" fill="url(#hcTyre)"/>
-      <circle cx="158" cy="40" r="13" fill="none" stroke="#2a2a28" stroke-width=".8"/>
-      <circle cx="158" cy="40" r="11" fill="#0f0f0e"/>
-      <circle cx="158" cy="40" r="8.5" fill="url(#hcRim)"/>
-      <circle cx="158" cy="40" r="8" fill="#252520"/>
-      <g transform="translate(158,40)">
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(45)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(90)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(135)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(225)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(270)"/>
-        <line x1="0" y1="-8" x2="0" y2="-4.5" stroke="#888880" stroke-width="1.8" stroke-linecap="round" transform="rotate(315)"/>
-      </g>
-      <circle cx="158" cy="40" r="4.5" fill="#1a1a18" stroke="#555550" stroke-width=".8"/>
-      <circle cx="158" cy="40" r="2.2" fill="url(#hcRim)"/>
-      <circle cx="158" cy="40" r="1.4" fill="#222220" stroke="#888880" stroke-width=".5"/>
-      <path d="M158,31 Q164,31 167,34 L166,35.5 Q163,33 158,33 Q153,33 150,35.5 L149,34 Q152,31 158,31 Z" fill="#cc1a00" opacity=".8"/>
-      <line x1="4" y1="44.5" x2="206" y2="44.5" stroke="rgba(12,124,68,.18)" stroke-width=".8"/>
-      <ellipse cx="54" cy="44.5" rx="14" ry="2" fill="#0C7C44" opacity=".14"/>
-      <ellipse cx="158" cy="44.5" rx="14" ry="2" fill="#0C7C44" opacity=".14"/>
-    </svg>
-  </div>
-  <!-- ── end header car ── -->
+
 
   <div class="hdr-right">
     <button class="btn-ghost" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'})">Browse All</button>
@@ -1317,12 +1313,39 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
 <footer>
   <div class="ft-grid">
     <div>
-      <div class="logo"><div class="logo-box" style="display:inline-flex;margin-right:8px">🚗</div>Drive<em>NG</em></div>
+      <div class="logo">
+      <div class="logo-mark"><svg width="44" height="44" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="flgShield" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#0faa5e"/>
+      <stop offset="100%" stop-color="#085c32"/>
+    </linearGradient>
+    <linearGradient id="flgArrow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#C9920A"/>
+      <stop offset="100%" stop-color="#f5b830"/>
+    </linearGradient>
+    <filter id="flgGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path d="M19,2 L34,8 L34,21 Q34,31 19,36 Q4,31 4,21 L4,8 Z" fill="url(#flgShield)"/>
+  <path d="M19,4.5 L32,10 L32,21 Q32,29.5 19,34 Q6,29.5 6,21 L6,10 Z" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+  <rect x="8" y="18.5" width="7" height="1.2" rx=".6" fill="rgba(255,255,255,.3)"/>
+  <rect x="8" y="21.5" width="5" height="1" rx=".5" fill="rgba(255,255,255,.18)"/>
+  <rect x="12" y="13" width="3" height="13" rx="1.5" fill="white"/>
+  <path d="M14.5,13 Q23,13 23,19.5 Q23,26 14.5,26" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <path d="M20,16.5 L27,19.5 L20,22.5" fill="none" stroke="url(#flgArrow)" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round" filter="url(#flgGlow)"/>
+  <circle cx="27.5" cy="19.5" r="1.8" fill="url(#flgArrow)"/>
+  <path d="M15,33 L19,36 L23,33" fill="none" stroke="url(#flgArrow)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>
+      <div class="logo-text"><span class="logo-drive">Drive</span><span class="logo-ng">NG</span></div>
+    </div>
       <p class="ft-desc">Nigeria's most complete car rental directory — listing international and homegrown providers with real vehicle prices.</p>
     </div>
     <div class="ft-col"><h4>Browse</h4><a href="#intl">🌍 International</a><a href="#lagos">🌊 Lagos</a><a href="#abuja">🏛️ Abuja</a><a href="#ph">⚓ Port Harcourt</a><a href="#national">🇳🇬 Nationwide</a></div>
     <div class="ft-col"><h4>Services</h4><a href="#">🔑 Self-Drive</a><a href="#">✈️ Airport Transfer</a><a href="#">💒 Wedding Cars</a><a href="#">🛡 Armoured VIP</a><a href="#">🏢 Corporate Fleet</a></div>
-    <div class="ft-col"><h4>Company</h4><a href="#">About DriveNG</a><a href="javascript:void(0)" onclick="openModal()">List Your Business</a><a href="#">Contact Us</a></div>
+    <div class="ft-col"><h4>Company</h4><a href="javascript:void(0)" onclick="openAbout()">About DriveNG</a><a href="javascript:void(0)" onclick="openModal()">List Your Business</a><a href="javascript:void(0)" onclick="openContact()">Contact Us</a></div>
   </div>
   <div class="ft-bot">
     <p class="ft-copy">© 2025 DriveNG · 🇳🇬 Built for Nigeria · Prices are indicative — always confirm with vendor</p>
@@ -1794,6 +1817,96 @@ function submitBooking() {
   }, 3000);
 })();
 
+
+/* ABOUT MODAL */
+function openAbout(){
+  document.getElementById('aboutModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeAbout(){
+  document.getElementById('aboutModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const el = document.getElementById('aboutModal');
+  if(el) el.addEventListener('click', function(e){ if(e.target===this) closeAbout(); });
+});
+
+
+/* =====================
+   CONTACT MODAL
+===================== */
+function openContact(){
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow='hidden';
+  // reset
+  document.getElementById('ct-success').classList.remove('show');
+  document.getElementById('ct-formbody').style.display='block';
+  ['ct-name','ct-phone','ct-email','ct-message'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.value='';el.classList.remove('ct-invalid');}
+  });
+  document.getElementById('ct-subject').value='';
+  document.getElementById('ct-subject').classList.remove('ct-invalid');
+  document.querySelectorAll('.ct-err').forEach(e=>e.classList.remove('show'));
+}
+function closeContact(){
+  document.getElementById('contactModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const el=document.getElementById('contactModal');
+  if(el) el.addEventListener('click',function(e){if(e.target===this)closeContact();});
+});
+function validateContact(){
+  let v=true;
+  function chkCt(id,eid,fn){
+    const f=document.getElementById(id),e=document.getElementById(eid);
+    if(!f||!e) return true;
+    const ok=fn(f.value);
+    f.classList.toggle('ct-invalid',!ok);
+    e.classList.toggle('show',!ok);
+    return ok;
+  }
+  v=chkCt('ct-name','cte-name',val=>val.trim().length>=2)&&v;
+  v=chkCt('ct-email','cte-email',val=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val))&&v;
+  v=chkCt('ct-subject','cte-subject',val=>val!=='')&&v;
+  v=chkCt('ct-message','cte-message',val=>val.trim().length>=10)&&v;
+  return v;
+}
+function submitContact(){
+  if(!validateContact()) return;
+  const btn=document.getElementById('ct-submit');
+  btn.textContent='Sending…'; btn.disabled=true;
+
+  const name    = document.getElementById('ct-name').value.trim();
+  const phone   = document.getElementById('ct-phone').value.trim();
+  const email   = document.getElementById('ct-email').value.trim();
+  const subject = document.getElementById('ct-subject').value;
+  const message = document.getElementById('ct-message').value.trim();
+
+  const payload={
+    access_key:'c75e3971-d5c7-4e2c-bddf-ba97dcc0bc4b',
+    subject:'💬 Contact Form — DriveNG: ' + subject + ' from ' + name,
+    from_name:'DriveNG Contact Form',
+    replyto: email,
+    'Name':    name,
+    'Phone':   phone || 'Not provided',
+    'Email':   email,
+    'Subject': subject,
+    'Message': message
+  };
+
+  submitViaForm(payload);
+
+  document.getElementById('ct-sname').textContent    = name;
+  document.getElementById('ct-semail').textContent   = email;
+  document.getElementById('ct-ssubject').textContent = subject;
+  document.getElementById('ct-formbody').style.display='none';
+  document.getElementById('ct-success').classList.add('show');
+  btn.disabled=false; btn.textContent='Send Message →';
+}
+
 </script>
 <!-- ==================== BOOKING REQUEST MODAL ==================== -->
 <div class="bk-overlay" id="bookingModal">
@@ -1874,6 +1987,171 @@ function submitBooking() {
 
       <button class="btn-bk-submit" id="bk-submit" onclick="submitBooking()">Submit Booking Request →</button>
       <div class="bk-footer-note">🔒 Your details are never shared with the company directly. DriveNG acts as your booking agent at no extra cost to you.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== ABOUT MODAL ==================== -->
+<div class="abt-overlay" id="aboutModal">
+  <div class="abt-modal" role="dialog" aria-modal="true" aria-label="About DriveNG">
+
+    <!-- Hero band -->
+    <div class="abt-hero">
+      <button class="abt-close" onclick="closeAbout()" aria-label="Close">✕</button>
+      <div class="abt-hero-tag">🇳🇬 Our Story</div>
+      <h2>Connecting Nigerians to the<br><i>Right Ride, Anywhere</i></h2>
+      <p class="abt-hero-lead">DriveNG was built with one purpose: to make quality car hire in Nigeria accessible, transparent, and stress-free — whether you're booking from Lagos or from London.</p>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="abt-stats">
+      <div class="abt-stat"><div class="abt-stat-n">50+</div><div class="abt-stat-l">Verified Companies</div></div>
+      <div class="abt-stat"><div class="abt-stat-n">300+</div><div class="abt-stat-l">Vehicles Listed</div></div>
+      <div class="abt-stat"><div class="abt-stat-n">12+</div><div class="abt-stat-l">Cities Covered</div></div>
+      <div class="abt-stat"><div class="abt-stat-n">0%</div><div class="abt-stat-l">Commission to You</div></div>
+    </div>
+
+    <!-- Body -->
+    <div class="abt-body">
+
+      <!-- Who we are -->
+      <div class="abt-section">
+        <div class="abt-section-label">Who We Are</div>
+        <h3>Nigeria's First Car Rental Marketplace</h3>
+        <p>DriveNG was founded to solve a problem every Nigerian knows too well — the frustration of not knowing which car hire company to trust, what a fair price looks like, or who to call when you land at Murtala Muhammed Airport at midnight and need a reliable ride.</p>
+        <p>We brought together over 50 verified rental companies — from global brands like Hertz and Avis to homegrown Nigerian operators in Lagos, Abuja, Port Harcourt, Enugu, Kano and beyond — into one easy-to-browse directory, complete with real fleet details and transparent pricing.</p>
+      </div>
+
+      <!-- How it works -->
+      <div class="abt-section">
+        <div class="abt-section-label">How It Works</div>
+        <h3>We Handle the Booking For You</h3>
+        <p>Unlike a basic directory that just lists phone numbers, DriveNG acts as your personal booking agent. You browse, choose, and request — we reach out to the company, confirm availability and pricing, then get back to you. You never need to chase anyone.</p>
+        <div class="abt-steps">
+          <div class="abt-step"><div class="abt-step-num">1</div><div><div class="abt-step-title">Browse & Compare</div><div class="abt-step-desc">Filter by city, vehicle type, budget and service. See real fleet details and indicative prices side by side.</div></div></div>
+          <div class="abt-step"><div class="abt-step-num">2</div><div><div class="abt-step-title">Submit a Request</div><div class="abt-step-desc">Tell us what you need — pick-up location, dates, vehicle preference. Takes less than 2 minutes.</div></div></div>
+          <div class="abt-step"><div class="abt-step-num">3</div><div><div class="abt-step-title">We Contact the Company</div><div class="abt-step-desc">Our team reaches out to the rental company on your behalf, verifies availability and confirms the rate.</div></div></div>
+          <div class="abt-step"><div class="abt-step-num">4</div><div><div class="abt-step-title">You Get Confirmed</div><div class="abt-step-desc">We call or WhatsApp you back with full booking details. No surprises, no hidden charges.</div></div></div>
+        </div>
+      </div>
+
+      <!-- Why DriveNG -->
+      <div class="abt-section">
+        <div class="abt-section-label">Why DriveNG</div>
+        <h3>Built for Nigerians, at Home and Abroad</h3>
+        <p>Whether you live in Nigeria or you're a Nigerian in the diaspora planning a visit home, finding a trustworthy car hire shouldn't be a guessing game. DriveNG gives you the information and confidence to make the right choice — and the peace of mind of having someone handle it for you.</p>
+        <div class="abt-values">
+          <div class="abt-value"><div class="abt-value-icon">🔍</div><div class="abt-value-title">Transparency</div><div class="abt-value-desc">Real prices, real fleets. No hidden fees, no bait-and-switch.</div></div>
+          <div class="abt-value"><div class="abt-value-icon">🛡️</div><div class="abt-value-title">Trust & Safety</div><div class="abt-value-desc">We verify every company before they appear on DriveNG.</div></div>
+          <div class="abt-value"><div class="abt-value-icon">🇳🇬</div><div class="abt-value-title">Built for Nigeria</div><div class="abt-value-desc">Designed around how Nigerians actually travel and hire cars.</div></div>
+          <div class="abt-value"><div class="abt-value-icon">📞</div><div class="abt-value-title">Human Support</div><div class="abt-value-desc">A real person handles your booking request — not a chatbot.</div></div>
+          <div class="abt-value"><div class="abt-value-icon">💰</div><div class="abt-value-title">Free to Use</div><div class="abt-value-desc">No fees, no commission charged to customers. Ever.</div></div>
+          <div class="abt-value"><div class="abt-value-icon">🌍</div><div class="abt-value-title">Diaspora-Friendly</div><div class="abt-value-desc">Book from anywhere in the world for travel inside Nigeria.</div></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="abt-cta">
+        <div class="abt-cta-text">
+          <h4>Ready to find your perfect ride?</h4>
+          <p>Browse 300+ vehicles across Nigeria or make a booking request right now.</p>
+        </div>
+        <div class="abt-cta-btns">
+          <button class="btn-abt-book" onclick="closeAbout();openBooking(null);">Book a Vehicle →</button>
+          <button class="btn-abt-list" onclick="closeAbout();openModal();">List Your Business</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONTACT MODAL ==================== -->
+<div class="ct-overlay" id="contactModal">
+  <div class="ct-modal" role="dialog" aria-modal="true" aria-label="Contact DriveNG">
+
+    <!-- Header -->
+    <div class="ct-hdr">
+      <button class="ct-close" onclick="closeContact()" aria-label="Close">✕</button>
+      <div class="ct-hdr-icon">💬</div>
+      <h2>Get in Touch with DriveNG</h2>
+      <div class="ct-hdr-sub">Have a question, complaint or suggestion? Fill the form below and our team will get back to you within 24 hours.</div>
+    </div>
+
+    <!-- Contact channels -->
+    <div class="ct-channels">
+      <div class="ct-channel"><div class="ct-ch-icon">📧</div><div><div class="ct-ch-label">Email</div><div class="ct-ch-val">rentaldir3@gmail.com</div></div></div>
+      <div class="ct-channel"><div class="ct-ch-icon">📍</div><div><div class="ct-ch-label">Based In</div><div class="ct-ch-val">Nigeria 🇳🇬</div></div></div>
+      <div class="ct-channel"><div class="ct-ch-icon">⏱️</div><div><div class="ct-ch-label">Response Time</div><div class="ct-ch-val">Within 24 hours</div></div></div>
+    </div>
+
+    <!-- Success screen -->
+    <div class="ct-success" id="ct-success">
+      <div class="ct-success-icon">✅</div>
+      <div class="ct-success-title">Message Sent!</div>
+      <div class="ct-success-sub">Thanks for reaching out. We've received your message and will reply to your email within 24 hours.</div>
+      <div class="ct-sdet">
+        <div class="ct-sdet-row"><span style="color:var(--gray)">Your Name</span><strong id="ct-sname">—</strong></div>
+        <div class="ct-sdet-row"><span style="color:var(--gray)">Email</span><strong id="ct-semail">—</strong></div>
+        <div class="ct-sdet-row"><span style="color:var(--gray)">Subject</span><strong id="ct-ssubject">—</strong></div>
+      </div>
+      <button class="btn-ct-close" onclick="closeContact()">Close</button>
+    </div>
+
+    <!-- Form -->
+    <div class="ct-body" id="ct-formbody">
+      <div class="ct-notice">💡 Use this form for general enquiries. For vehicle bookings, use the <strong>Request a Vehicle</strong> button on any company card.</div>
+
+      <div class="ct-row">
+        <div class="ct-fg">
+          <label>Full Name *</label>
+          <input type="text" id="ct-name" placeholder="e.g. Emeka Okafor" autocomplete="name">
+          <div class="ct-err" id="cte-name">Please enter your name</div>
+        </div>
+        <div class="ct-fg">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" id="ct-phone" placeholder="0801 234 5678" autocomplete="tel">
+        </div>
+      </div>
+
+      <div class="ct-row full">
+        <div class="ct-fg">
+          <label>Email Address *</label>
+          <input type="email" id="ct-email" placeholder="you@email.com" autocomplete="email">
+          <div class="ct-err" id="cte-email">Please enter a valid email address</div>
+        </div>
+      </div>
+
+      <div class="ct-row full">
+        <div class="ct-fg">
+          <label>Subject *</label>
+          <select id="ct-subject">
+            <option value="">Select a topic…</option>
+            <option value="General Enquiry">General Enquiry</option>
+            <option value="Booking Help">Booking Help</option>
+            <option value="Company Listing">Company Listing / Partnership</option>
+            <option value="Pricing Question">Pricing Question</option>
+            <option value="Report an Issue">Report an Issue</option>
+            <option value="Complaint">Complaint</option>
+            <option value="Suggestion / Feedback">Suggestion / Feedback</option>
+            <option value="Press / Media">Press / Media</option>
+            <option value="Other">Other</option>
+          </select>
+          <div class="ct-err" id="cte-subject">Please select a subject</div>
+        </div>
+      </div>
+
+      <div class="ct-row full">
+        <div class="ct-fg">
+          <label>Message *</label>
+          <textarea id="ct-message" placeholder="Tell us how we can help you…"></textarea>
+          <div class="ct-err" id="cte-message">Please enter your message (at least 10 characters)</div>
+        </div>
+      </div>
+
+      <button class="btn-ct-submit" id="ct-submit" onclick="submitContact()">Send Message →</button>
+      <div class="ct-footnote">🔒 Your information is kept private and only used to respond to your enquiry.</div>
     </div>
 
   </div>
