@@ -2778,53 +2778,78 @@ document.getElementById('listingModal').addEventListener('click',function(e){
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 function updateMSteps(){
-  for(let i=1;i<=3;i++){
-    const si=document.getElementById('si'+i);
+  for(var i=1;i<=mTotalSteps;i++){
+    var si=document.getElementById('si'+i);
+    if(!si) continue;
     si.classList.remove('active','done');
     if(i<mStep) si.classList.add('done');
     else if(i===mStep) si.classList.add('active');
-    if(i<3) document.getElementById('ml'+i).classList.toggle('done',i<mStep);
+    var ml=document.getElementById('ml'+i);
+    if(ml) ml.classList.toggle('done',i<mStep);
   }
   document.getElementById('mbback').style.display=mStep>1?'':'none';
-  document.getElementById('mbnext').textContent=mStep<3?'Continue →':'Submit Listing ✓';
+  document.getElementById('mbnext').textContent=mStep<mTotalSteps?'Continue →':'Submit Listing ✓';
 }
 
 function mNext(){
   if(!validateStep(mStep)) return;
-  if(mStep<3){mStep++;document.querySelectorAll('.fsec').forEach(s=>s.classList.remove('active'));document.getElementById('fs'+mStep).classList.add('active');updateMSteps();}
-  else submitListing();
+  if(mStep < mTotalSteps){
+    mStep++;
+    document.querySelectorAll('.fsec').forEach(function(s){ s.classList.remove('active'); });
+    document.getElementById('fs'+mStep).classList.add('active');
+    updateMSteps();
+  } else {
+    submitListing();
+  }
 }
 function mPrev(){
-  if(mStep>1){mStep--;document.querySelectorAll('.fsec').forEach(s=>s.classList.remove('active'));document.getElementById('fs'+mStep).classList.add('active');updateMSteps();}
+  if(mStep>1){
+    mStep--;
+    document.querySelectorAll('.fsec').forEach(function(s){ s.classList.remove('active'); });
+    document.getElementById('fs'+mStep).classList.add('active');
+    updateMSteps();
+  }
 }
 
 function chk(id,eid,fn){
-  const f=document.getElementById(id),e=document.getElementById(eid);
-  const ok=fn(f.value);
+  var f=document.getElementById(id), e=document.getElementById(eid);
+  if(!f||!e) return true;
+  var ok=fn(f.value);
   f.classList.toggle('finvalid',!ok);
   e.classList.toggle('show',!ok);
   return ok;
 }
 function validateStep(s){
   if(s===1){
-    let v=true;
-    v=chk('f-biz','e-biz',v=>v.trim().length>=2)&&v;
-    v=chk('f-city','e-city',v=>v!=='')&&v;
-    v=chk('f-name','e-name',v=>v.trim().length>=2)&&v;
-    v=chk('f-phone','e-phone',v=>v.trim().replace(/\s/g,'').length>=7)&&v;
-    v=chk('f-email','e-email',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))&&v;
-    v=chk('f-fleet','e-fleet',v=>v!=='')&&v;
+    var v=true;
+    v=chk('f-biz','e-biz',function(val){return val.trim().length>=2;})&&v;
+    v=chk('f-city','e-city',function(val){return val!=='';})&&v;
+    v=chk('f-name','e-name',function(val){return val.trim().length>=2;})&&v;
+    v=chk('f-phone','e-phone',function(val){return val.trim().replace(/\s/g,'').length>=7;})&&v;
+    v=chk('f-email','e-email',function(val){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);})&&v;
+    v=chk('f-fleet','e-fleet',function(val){return val!=='';})&&v;
     return v;
   }
   if(s===2){
-    const ok=document.querySelectorAll('#svgrid input:checked').length>0;
-    document.getElementById('e-svc').classList.toggle('show',!ok);
+    // Step 2 = Vehicles — must have at least one vehicle added
+    var eVeh=document.getElementById('e-veh');
+    var ok=vehData.length>0;
+    if(eVeh) eVeh.style.display=ok?'none':'block';
     return ok;
   }
   if(s===3){
-    const ok=document.getElementById('f-agree').checked;
-    document.getElementById('e-agree').classList.toggle('show',!ok);
-    return ok;
+    // Step 3 = Services — must check at least one
+    var ok3=document.querySelectorAll('#svgrid input:checked').length>0;
+    var eSvc=document.getElementById('e-svc');
+    if(eSvc) eSvc.classList.toggle('show',!ok3);
+    return ok3;
+  }
+  if(s===4){
+    // Step 4 = Plan — must tick agree
+    var ok4=document.getElementById('f-agree').checked;
+    var eAgree=document.getElementById('e-agree');
+    if(eAgree) eAgree.classList.toggle('show',!ok4);
+    return ok4;
   }
   return true;
 }
