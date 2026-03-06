@@ -37,23 +37,23 @@ nav a:hover{color:#fff;background:rgba(255,255,255,.08);}
 .ham.active span:nth-child(2){opacity:0;transform:scaleX(0);}
 .ham.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-.hero{background:var(--ink);padding:0;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:520px;align-items:stretch;}
-.hero-left{padding:60px 52px 56px 52px;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;}
+.hero{background:var(--ink);padding:0;position:relative;overflow:hidden;display:grid;grid-template-columns:55% 45%;min-height:320px;align-items:stretch;}
+.hero-left{padding:32px 44px 30px 44px;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;}
 .hero-right{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 /* Ambient glow layers */
-.hero::before{content:'';position:absolute;left:-120px;top:-100px;width:560px;height:560px;background:radial-gradient(circle,rgba(12,124,68,.22) 0%,transparent 65%);pointer-events:none;z-index:1;}
+.hero::before{content:'';position:absolute;left:-80px;top:-60px;width:360px;height:360px;background:radial-gradient(circle,rgba(12,124,68,.18) 0%,transparent 65%);pointer-events:none;z-index:1;}
 .hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,124,68,.08) 0%,rgba(201,146,10,.05) 100%);z-index:1;}
 .hero-right::after{content:'';position:absolute;bottom:0;left:0;right:0;height:160px;background:linear-gradient(to top,rgba(17,18,16,.9) 0%,transparent 100%);z-index:2;}
 /* car scene */
-.car-scene{position:relative;z-index:3;width:100%;padding:24px 0 0;display:flex;align-items:flex-end;justify-content:center;}
-.car-scene svg{width:100%;max-width:560px;height:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.7)) drop-shadow(0 0 40px rgba(12,124,68,.18));}
+.car-scene{position:relative;z-index:3;width:100%;padding:12px 0 0;display:flex;align-items:flex-end;justify-content:center;}
+.car-scene svg{width:90%;max-width:380px;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.7)) drop-shadow(0 0 28px rgba(12,124,68,.18));}
 /* floating details */
-.car-badge{position:absolute;z-index:5;background:rgba(255,255,255,.07);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 13px;display:flex;align-items:center;gap:9px;}
-.car-badge-val{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:#fff;line-height:1;}
-.car-badge-label{font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.6px;}
-.badge-top{top:32px;right:32px;animation:floatA 4s ease-in-out infinite;}
-.badge-mid{top:50%;right:24px;transform:translateY(-50%);animation:floatB 5s ease-in-out infinite;}
-.badge-bot{bottom:42px;right:32px;animation:floatA 6s ease-in-out infinite 1s;}
+.car-badge{position:absolute;z-index:5;background:rgba(255,255,255,.07);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:7px;}
+.car-badge-val{font-family:'Fraunces',serif;font-size:.88rem;font-weight:700;color:#fff;line-height:1;}
+.car-badge-label{font-size:.58rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;}
+.badge-top{top:16px;right:16px;animation:floatA 4s ease-in-out infinite;}
+.badge-mid{top:50%;right:12px;transform:translateY(-50%);animation:floatB 5s ease-in-out infinite;}
+.badge-bot{bottom:22px;right:16px;animation:floatA 6s ease-in-out infinite 1s;}
 @keyframes floatA{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 @keyframes floatB{0%,100%{transform:translateY(-50%);}50%{transform:translateY(calc(-50% - 7px));}}
 /* road line effect */
@@ -63,21 +63,21 @@ nav a:hover{color:#fff;background:rgba(255,255,255,.08);}
 .hero::before{content:'';position:absolute;left:-80px;top:-80px;width:480px;height:480px;background:radial-gradient(circle,rgba(12,124,68,.2) 0%,transparent 65%);pointer-events:none;}
 .hero-in{max-width:720px;position:relative;animation:fadeUp .5s ease both;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-.hero-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(12,124,68,.18);border:1px solid rgba(12,124,68,.4);color:#5de09a;padding:5px 12px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(12,124,68,.18);border:1px solid rgba(12,124,68,.4);color:#5de09a;padding:4px 10px;border-radius:20px;font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
 .tag-dot{width:6px;height:6px;border-radius:50%;background:#5de09a;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
-.hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;line-height:1.08;margin-bottom:16px;}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.8vw,2.2rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px;}
 .hero h1 i{font-style:italic;color:var(--gold);}
-.hero-desc{color:rgba(255,255,255,.55);font-size:.97rem;line-height:1.75;max-width:520px;margin-bottom:30px;}
-.hero-stats{display:flex;gap:0;border:1px solid rgba(255,255,255,.1);border-radius:9px;width:fit-content;overflow:hidden;margin-bottom:28px;}
-.hstat{padding:14px 26px;text-align:center;border-right:1px solid rgba(255,255,255,.1);}
+.hero-desc{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.6;max-width:480px;margin-bottom:18px;}
+.hero-stats{display:flex;gap:0;border:1px solid rgba(255,255,255,.1);border-radius:7px;width:fit-content;overflow:hidden;margin-bottom:16px;}
+.hstat{padding:9px 18px;text-align:center;border-right:1px solid rgba(255,255,255,.1);}
 .hstat:last-child{border-right:none;}
-.hstat-n{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:var(--gold);line-height:1;}
-.hstat-l{font-size:.68rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:3px;}
+.hstat-n{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:900;color:var(--gold);line-height:1;}
+.hstat-l{font-size:.6rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.7px;margin-top:2px;}
 .hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
-.btn-h1{background:var(--green);color:#fff;border:none;padding:12px 24px;border-radius:7px;font-size:.92rem;font-weight:700;transition:all .2s;}
+.btn-h1{background:var(--green);color:#fff;border:none;padding:9px 20px;border-radius:6px;font-size:.83rem;font-weight:700;transition:all .2s;}
 .btn-h1:hover{background:var(--green-dark);}
-.btn-h2{background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);border:1.5px solid rgba(255,255,255,.18);padding:11px 22px;border-radius:7px;font-size:.92rem;font-weight:600;transition:all .2s;}
+.btn-h2{background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);border:1.5px solid rgba(255,255,255,.18);padding:8px 18px;border-radius:6px;font-size:.83rem;font-weight:600;transition:all .2s;}
 .btn-h2:hover{background:rgba(255,255,255,.13);color:#fff;}
 .search-wrap{background:var(--cream);border-bottom:1px solid var(--border);padding:18px 40px;}
 .search-bar{display:flex;gap:9px;align-items:flex-end;background:#fff;border:1.5px solid var(--border);border-radius:9px;padding:9px 12px;flex-wrap:wrap;}
@@ -291,15 +291,33 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
 
 @media(max-width:860px){
   header{padding:0 18px;}nav,.hdr-right{display:none!important;}.ham{display:flex;}
-  .hero{grid-template-columns:1fr;min-height:auto;}.hero-right{height:280px;}.hero-left{padding:36px 18px 28px;}.search-wrap{padding:14px 18px;}.city-tabs{padding:0 18px;}
-  .page{grid-template-columns:1fr;}.sidebar{display:none;}.main{padding:18px 18px 50px;}
-  .card-right{display:none;}footer{padding:36px 18px 22px;}.ft-grid{grid-template-columns:1fr 1fr;gap:24px;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-right{display:none;}
+  .hero-left{padding:18px 20px 16px;}
+  .hero h1{font-size:1.25rem;margin-bottom:8px;line-height:1.15;}
+  .hero-tag{font-size:.6rem;padding:3px 9px;margin-bottom:8px;}
+  .hero-desc{font-size:.78rem;line-height:1.5;margin-bottom:12px;max-width:100%;}
+  .hero-stats{margin-bottom:12px;}
+  .hstat{padding:7px 13px;}
+  .hstat-n{font-size:1rem;}
+  .hstat-l{font-size:.56rem;}
+  .hero-btns{gap:7px;}
+  .btn-h1{padding:8px 16px;font-size:.78rem;}
+  .btn-h2{padding:7px 14px;font-size:.78rem;}
+  .search-wrap{padding:10px 16px;}.city-tabs{padding:0 14px;}
+  .page{grid-template-columns:1fr;}.sidebar{display:none;}.main{padding:14px 14px 50px;}
+  .card-right{display:none;}footer{padding:32px 18px 20px;}.ft-grid{grid-template-columns:1fr 1fr;gap:20px;}
 }
 @media(max-width:520px){
   .search-bar{flex-direction:column;}.sf{min-width:100%;}
   .btn-srch,.btn-reset{width:100%;justify-content:center;height:40px;}
   .vgrid{grid-template-columns:1fr 1fr;}.frow{grid-template-columns:1fr;}.plans{grid-template-columns:1fr;}
   .ft-grid{grid-template-columns:1fr;}.mperks{flex-wrap:wrap;}
+  .hero h1{font-size:1.1rem;}
+  .hero-stats{display:none;}
+  .hero-desc{display:none;}
+  .hero-btns{flex-direction:column;}
+  .btn-h1,.btn-h2{width:100%;text-align:center;justify-content:center;}
 }
 
 /* =====================
@@ -924,7 +942,7 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
 <section class="search-wrap">
   <div class="search-bar">
     <div class="sf"><label>City</label>
-      <select id="fc" onchange="filter()">
+      <select id="fc" onchange="syncCityDropdown(this)" onchange="filter()">
         <option value="all">All Cities</option>
         <option value="Lagos">Lagos</option><option value="Abuja">Abuja (FCT)</option>
         <option value="Port Harcourt">Port Harcourt</option><option value="Kano">Kano</option>
@@ -950,13 +968,17 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
 
 <div class="city-tabs-wrap">
   <div class="city-tabs">
-    <button class="ctab active" onclick="jumpTo('main',this)">All</button>
-    <button class="ctab" onclick="jumpTo('intl',this)">🌍 International</button>
-    <button class="ctab" onclick="jumpTo('lagos',this)">🌊 Lagos</button>
-    <button class="ctab" onclick="jumpTo('abuja',this)">🏛️ Abuja</button>
-    <button class="ctab" onclick="jumpTo('ph',this)">⚓ Port Harcourt</button>
-    <button class="ctab" onclick="jumpTo('others',this)">🗺️ Other Cities</button>
-    <button class="ctab" onclick="jumpTo('national',this)">🇳🇬 Nationwide</button>
+    <button class="ctab active" onclick="filterCity('all',this)">All Cities</button>
+    <button class="ctab" onclick="filterCity('International',this)">🌍 International</button>
+    <button class="ctab" onclick="filterCity('Lagos',this)">🌊 Lagos</button>
+    <button class="ctab" onclick="filterCity('Abuja',this)">🏛️ Abuja</button>
+    <button class="ctab" onclick="filterCity('Port Harcourt',this)">⚓ Port Harcourt</button>
+    <button class="ctab" onclick="filterCity('Enugu',this)">🏙️ Enugu</button>
+    <button class="ctab" onclick="filterCity('Warri',this)">⚙️ Warri/Delta</button>
+    <button class="ctab" onclick="filterCity('Ibadan',this)">🌿 Ibadan</button>
+    <button class="ctab" onclick="filterCity('Kano',this)">🕌 Kano</button>
+    <button class="ctab" onclick="filterCity('Owerri',this)">🌴 Owerri</button>
+    <button class="ctab" onclick="filterCity('Nationwide',this)">🇳🇬 Nationwide</button>
   </div>
 </div>
 
@@ -2607,36 +2629,108 @@ function toggleFleet(btn){
   btn.classList.toggle('open',open);
 }
 /* CITY TABS */
-function jumpTo(id,btn){
-  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  const el=document.getElementById(id);
-  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
-  else window.scrollTo({top:0,behavior:'smooth'});
+var activeCityFilter = 'all';
+
+function filterCity(city, btn) {
+  activeCityFilter = city;
+  document.querySelectorAll('.ctab').forEach(function(t){ t.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  applyFilters();
+  var main = document.getElementById('main');
+  if (main) main.scrollIntoView({behavior:'smooth', block:'start'});
 }
-/* FILTER */
-function filter(){
-  const city=document.getElementById('fc').value;
-  const type=document.getElementById('ft').value;
-  const svc=document.getElementById('fs').value;
-  const cards=document.querySelectorAll('.company-card');
-  let n=0;
-  cards.forEach(c=>{
-    const dc=c.dataset.city||'',dt=c.dataset.type||'',ds=c.dataset.svc||'';
-    const cm=city==='all'||dc.includes(city);
-    const tm=type==='all'||dt===type;
-    const sm=svc==='all'||ds.includes(svc.slice(0,4));
-    const show=cm&&tm&&sm;
-    c.style.display=show?'':'none';
-    if(show)n++;
+
+/* FILTER — combines city tab + dropdown filters */
+function applyFilters() {
+  var cityTab = activeCityFilter;
+  var type = document.getElementById('ft') ? document.getElementById('ft').value : 'all';
+  var svc  = document.getElementById('fs') ? document.getElementById('fs').value : 'all';
+  var cards = document.querySelectorAll('.company-card');
+  var n = 0;
+
+  cards.forEach(function(card) {
+    var dc = card.dataset.city || '';
+    var dt = card.dataset.type || '';
+    var ds = card.dataset.svc  || '';
+
+    var normalized = dc
+      .replace(/Port Harcourt/g, 'Port_Harcourt')
+      .replace(/Warri \/ Delta/g, 'Warri_Delta')
+      .replace(/Warri\/Delta/g, 'Warri_Delta');
+    var cityList = normalized.split(/[\s,|]+/)
+      .map(function(s){ return s.replace(/_/g,' ').trim().toLowerCase(); })
+      .filter(function(s){ return s.length > 0; });
+
+    var cm;
+    if (cityTab === 'all') {
+      cm = true;
+    } else if (cityTab === 'International') {
+      cm = dt === 'International';
+    } else if (cityTab === 'Nationwide') {
+      cm = cityList.indexOf('nationwide') !== -1;
+    } else if (cityTab === 'Warri') {
+      cm = cityList.indexOf('warri') !== -1 || cityList.indexOf('warri delta') !== -1;
+    } else {
+      var target = cityTab.toLowerCase();
+      cm = cityList.indexOf(target) !== -1;
+    }
+
+    var tm = type === 'all' || dt === type;
+    var sm = svc  === 'all' || ds.toLowerCase().indexOf(svc.slice(0,4).toLowerCase()) !== -1;
+    var show = cm && tm && sm;
+    card.style.display = show ? '' : 'none';
+    if (show) n++;
   });
-  document.getElementById('rcount').textContent=n||'0';
-  document.getElementById('nr').classList.toggle('show',n===0);
+
+  // Show/hide section headers + clists
+  document.querySelectorAll('.sec-hdr').forEach(function(hdr) {
+    var sib = hdr.nextElementSibling;
+    while (sib && !sib.classList.contains('clist')) sib = sib.nextElementSibling;
+    if (!sib) { hdr.style.display = ''; return; }
+    var anyVisible = false;
+    sib.querySelectorAll('.company-card').forEach(function(card) {
+      if (card.style.display !== 'none') anyVisible = true;
+    });
+    hdr.style.display = anyVisible ? '' : 'none';
+    sib.style.display  = anyVisible ? '' : 'none';
+  });
+
+  document.getElementById('rcount').textContent = n || '0';
+  document.getElementById('nr').classList.toggle('show', n === 0);
 }
-function resetF(){
-  ['fc','ft','fs'].forEach(id=>document.getElementById(id).value='all');
-  document.querySelectorAll('.company-card').forEach(c=>c.style.display='');
-  document.getElementById('rcount').textContent='15+';
+
+
+/* Sync city dropdown → tab */
+function syncCityDropdown(sel) {
+  var map = {
+    'all':'all','Lagos':'Lagos','Abuja':'Abuja',
+    'Port Harcourt':'Port Harcourt','Kano':'Kano','Ibadan':'Ibadan',
+    'Warri / Delta':'Warri','Enugu':'Enugu','Calabar':'Calabar',
+    'Nationwide':'Nationwide','Other':'all'
+  };
+  var city = map[sel.value] || 'all';
+  activeCityFilter = city;
+  // Update tab active state
+  document.querySelectorAll('.ctab').forEach(function(t) {
+    t.classList.remove('active');
+    var fn = t.getAttribute('onclick') || '';
+    if (fn.indexOf("'"+city+"'") !== -1) t.classList.add('active');
+    if (city === 'all' && fn.indexOf("'all'") !== -1) t.classList.add('active');
+  });
+  applyFilters();
+}
+/* legacy alias so existing filter() calls still work */
+function filter() { applyFilters(); }
+
+function resetF() {
+  activeCityFilter = 'all';
+  document.querySelectorAll('.ctab').forEach(function(t){ t.classList.remove('active'); });
+  var firstTab = document.querySelector('.ctab');
+  if (firstTab) firstTab.classList.add('active');
+  ['fc','ft','fs'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value='all'; });
+  document.querySelectorAll('.company-card').forEach(function(c){ c.style.display=''; });
+  document.querySelectorAll('.sec-hdr, .clist').forEach(function(el){ el.style.display=''; });
+  document.getElementById('rcount').textContent = '65+';
   document.getElementById('nr').classList.remove('show');
 }
 
