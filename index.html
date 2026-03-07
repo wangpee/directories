@@ -3729,7 +3729,7 @@ function validateBooking() {
     if (!f || !e) return true;
     const ok = fn(f.value);
     f.classList.toggle('bk-invalid', !ok);
-    e.classLis.toggle('show', !ok);
+    e.classList.toggle('show', !ok);
     return ok;
   }
   valid = chkBk('bk-fname', 'be-fname', v => v.trim().length >= 2) && valid;
