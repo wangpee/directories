@@ -186,12 +186,12 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--green:#0C7C44;--green-dark:#085c32;--green-light:#e6f5ec;--gold:#C9920A;--gold-light:#fef6e4;--ink:#111210;--white:#fafaf8;--gray:#6b6b68;--gray-light:#f4f4f2;--cream:#f0ece3;--border:#e4e4e0;--r:10px;--hh:62px;}
+:root{--green:#0C7C44;--green-dark:#085c32;--green-light:#e6f5ec;--gold:#C9920A;--gold-light:#fef6e4;--ink:#111210;--white:#fafaf8;--gray:#6b6b68;--gray-light:#f4f4f2;--cream:#f0ece3;--border:#e4e4e0;--r:10px;--hh:52px;}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;line-height:1.6;}
 a{text-decoration:none;color:inherit;}button{cursor:pointer;font-family:inherit;}
 #sp{position:fixed;top:0;left:0;right:0;height:3px;background:var(--green);transform-origin:left;transform:scaleX(0);z-index:9999;}
-header{background:var(--ink);height:var(--hh);display:flex;align-items:center;padding:0 40px;position:sticky;top:0;z-index:200;border-bottom:2.5px solid var(--green);}
+header{background:var(--ink);height:var(--hh);display:flex;align-items:center;padding:0 24px;position:sticky;top:0;z-index:200;border-bottom:2.5px solid var(--green);}
 .logo{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#fff;display:flex;align-items:center;gap:10px;letter-spacing:-.02em;}
 .logo-mark{display:flex;align-items:center;flex-shrink:0;filter:drop-shadow(0 2px 8px rgba(12,124,68,.4));}
 .logo-text{display:flex;align-items:baseline;gap:1px;}
@@ -872,7 +872,7 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
   --border:      rgba(0,0,0,.09);
   --border-dark: rgba(255,255,255,.10);
   --r: 12px;
-  --hh: 64px;
+  --hh: 52px;
   --glow: 0 0 40px rgba(0,201,107,.18);
 }
 
@@ -1425,6 +1425,243 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
 ::-webkit-scrollbar-thumb { background: rgba(0,201,107,.3); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(0,201,107,.6); }
 
+
+
+/* ════════════════════════════════════════════════════════════
+   DRIVEDIR — MOBILE FRIENDLY REDESIGN (CLEAN OVERRIDE)
+   ════════════════════════════════════════════════════════════ */
+
+/* ── 1. HEADER — slimmer on all screens ─────────────────────── */
+:root { --hh: 52px; }
+
+header {
+  height: var(--hh) !important;
+  padding: 0 24px !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,.35);
+}
+.logo { font-size: 1.35rem; gap: 8px; }
+.logo-mark svg { width: 28px; height: 28px; }
+nav a { font-size: .78rem; padding: 5px 9px; }
+.btn-ghost { padding: 5px 12px; font-size: .75rem; }
+.btn-primary { padding: 6px 14px; font-size: .75rem; }
+.hdr-right { gap: 7px; }
+
+/* ── 2. HERO — tighter desktop ──────────────────────────────── */
+.hero { min-height: 240px; }
+.hero-left { padding: 28px 44px 24px; }
+.hero h1 { font-size: clamp(1.3rem, 2.6vw, 2.1rem); margin-bottom: 9px; }
+.hero-desc { font-size: .82rem; margin-bottom: 14px; }
+.hero-stats { margin-bottom: 14px; }
+.hstat { padding: 8px 14px; }
+.hstat-n { font-size: 1.08rem; }
+.btn-h1 { padding: 9px 20px; }
+.btn-h2 { padding: 8px 17px; }
+
+/* ── 3. MOBILE BOOK BUTTON — hidden on desktop ───────────────── */
+.btn-mobile-book {
+  display: none;
+}
+
+/* ════════════════════════════════════════════
+   TABLET  ≤ 860px
+   ════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  :root { --hh: 50px; }
+
+  /* Header */
+  header { padding: 0 16px !important; }
+  nav, .hdr-right { display: none !important; }
+  .ham { display: flex !important; }
+  .logo { font-size: 1.22rem; }
+  .logo-mark svg { width: 25px; height: 25px; }
+
+  /* Hero */
+  .hero { grid-template-columns: 1fr !important; min-height: auto; }
+  .hero-right { display: none !important; }
+  .hero-left { padding: 20px 20px 16px; }
+  .hero h1 { font-size: 1.3rem; line-height: 1.15; margin-bottom: 8px; }
+  .hero-tag { font-size: .60rem; padding: 3px 9px; margin-bottom: 8px; }
+  .hero-desc { font-size: .79rem; line-height: 1.55; margin-bottom: 12px; max-width: 100%; }
+  .hero-stats { margin-bottom: 11px; }
+  .hstat { padding: 7px 12px; }
+  .hstat-n { font-size: .96rem; }
+  .hstat-l { font-size: .55rem; }
+  .hero-btns { gap: 8px; }
+  .btn-h1, .btn-h2 { padding: 9px 18px; font-size: .80rem; }
+
+  /* City tabs */
+  .city-tabs { padding: 0 14px; }
+  .city-tabs-wrap { top: var(--hh); }
+
+  /* Search */
+  .search-wrap { padding: 10px 16px; }
+
+  /* Layout: kill sidebar, full width */
+  .page { grid-template-columns: 1fr !important; }
+  .sidebar { display: none !important; }
+  .main { padding: 14px 14px 70px; }
+
+  /* Company cards: hide right price panel, show inline book btn */
+  .card-right { display: none !important; }
+  .card-logo { min-width: 72px; }
+  .card-info { padding: 13px 15px; }
+  .cname { font-size: .95rem; }
+  .cdesc { font-size: .77rem; line-height: 1.5; margin-bottom: 8px; }
+
+  /* Mobile book button — shown here */
+  .btn-mobile-book {
+    display: block;
+    width: 100%;
+    background: var(--green, #00C96B);
+    color: #060A07;
+    border: none;
+    padding: 9px 0;
+    border-radius: 8px;
+    font-size: .80rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    margin-top: 8px;
+    letter-spacing: .01em;
+    transition: background .18s;
+  }
+  .btn-mobile-book:hover { background: #009B52; color: #fff; }
+
+  /* Vehicle grid */
+  .vgrid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; }
+
+  /* Vehicle search results */
+  .vr-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Section headers */
+  .sec-title { font-size: 1.08rem; }
+
+  /* Footer */
+  footer { padding: 30px 18px 20px; }
+  .ft-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* No stagger animation on mobile (perf) */
+  .company-card { animation: none; }
+  .btn-h1, .btn-submit, .btn-bk-submit { animation: none; }
+}
+
+/* ════════════════════════════════════════════
+   MOBILE  ≤ 520px
+   ════════════════════════════════════════════ */
+@media (max-width: 520px) {
+  :root { --hh: 48px; }
+
+  /* Header */
+  header { padding: 0 14px !important; }
+  .logo { font-size: 1.1rem; gap: 6px; }
+  .logo-mark svg { width: 23px; height: 23px; }
+
+  /* Hero — very compact */
+  .hero-left { padding: 15px 15px 13px; }
+  .hero h1 { font-size: 1.15rem; line-height: 1.18; margin-bottom: 7px; }
+  .hero-desc { font-size: .77rem; margin-bottom: 9px; }
+  .hero-stats { margin-bottom: 9px; }
+  .hstat { padding: 6px 10px; }
+  .hstat-n { font-size: .88rem; }
+  .hstat-l { font-size: .53rem; }
+  .hero-btns { flex-direction: column; gap: 7px; }
+  .btn-h1, .btn-h2 {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: .82rem;
+    justify-content: center;
+    display: block;
+  }
+
+  /* Search bar — stacked */
+  .search-wrap { padding: 10px 12px; }
+  .search-bar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .sf, .sf-vehicle { min-width: 100%; width: 100%; flex: unset; }
+  .sf select, .sf input[type=text] { height: 42px; font-size: .85rem; width: 100%; }
+  .btn-srch { width: 100%; height: 42px; font-size: .85rem; border-radius: 8px; }
+  .btn-reset { width: 100%; height: 38px; font-size: .82rem; }
+
+  /* City tabs tighter */
+  .ctab { font-size: .75rem; padding: 10px 12px; }
+
+  /* Cards */
+  .company-card { border-radius: 10px; }
+  .card-logo { min-width: 64px; padding: 14px 10px; }
+  .lc { width: 44px; height: 44px; font-size: .76rem; }
+  .cname { font-size: .88rem; }
+  .cdesc { font-size: .74rem; line-height: 1.48; }
+  .card-badges { gap: 3px; }
+  .bdg { font-size: .57rem; padding: 2px 6px; }
+  .svcs { gap: 3px; }
+  .svc { font-size: .63rem; padding: 2px 5px; }
+
+  /* Mobile book button bigger on small phones */
+  .btn-mobile-book { font-size: .82rem; padding: 10px 0; border-radius: 8px; }
+
+  /* Fleet vehicle grid */
+  .vgrid { grid-template-columns: 1fr 1fr; gap: 7px; }
+  .vcar-name { font-size: .79rem; }
+  .vcar-price { font-size: .92rem; }
+
+  /* Vehicle search results */
+  .vr-grid { grid-template-columns: 1fr; }
+
+  /* Section headers */
+  .sec-hdr { margin: 24px 0 14px; }
+  .sec-title { font-size: 1rem; }
+
+  /* Info box */
+  .info-box { font-size: .77rem; padding: 9px 12px; }
+
+  /* Submit CTA */
+  .submit-box { padding: 24px 16px; border-radius: 10px; }
+  .submit-box h3 { font-size: 1.2rem; }
+  .submit-box p { font-size: .81rem; }
+  .btn-submit { width: 100%; padding: 12px 0; font-size: .88rem; }
+
+  /* Footer */
+  .ft-grid { grid-template-columns: 1fr; gap: 18px; }
+  .ft-desc { max-width: 100%; }
+
+  /* Booking modal — slides up from bottom */
+  .bk-overlay { padding: 0; align-items: flex-end; }
+  .bk-modal {
+    border-radius: 14px 14px 0 0;
+    max-height: 94vh;
+    width: 100%;
+  }
+  .bk-hdr { padding: 18px 16px 16px; border-radius: 14px 14px 0 0; }
+  .bk-hdr-title { font-size: 1.2rem; }
+  .bk-body { padding: 16px; }
+  .bk-row { grid-template-columns: 1fr; gap: 10px; }
+  .bk-how { grid-template-columns: 1fr; }
+  .bk-how-step { border-right: none; border-bottom: 1px solid var(--border); }
+  .bk-how-step:last-child { border-bottom: none; }
+}
+
+/* ════════════════════════════════════════════
+   EXTRA SMALL  ≤ 380px
+   ════════════════════════════════════════════ */
+@media (max-width: 380px) {
+  .logo { font-size: 1rem; }
+  .hero h1 { font-size: 1.05rem; }
+  .vgrid { grid-template-columns: 1fr; }
+  .hstat:nth-child(n+4) { display: none; }
+  .ctab { font-size: .70rem; padding: 9px 10px; }
+}
+
+/* ── Scrollbar — webkit ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,201,107,.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,201,107,.55); }
+
 </style>
 </head>
 <body>
@@ -1837,6 +2074,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja · Port Harcourt | 1,000+ vehicles</div>
           <div class="cdesc">Nigeria's sole Hertz franchise operated by C&amp;I Leasing Plc. Chauffeur services, airport transfers, escort/security and corporate fleet leasing.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.5</span><span class="rvc">(400+ reviews)</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">Starting from</div><div class="ps-from">Request</div><div class="ps-unit">a quote</div></div>
@@ -1875,6 +2113,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos Airport · Abuja Airport</div>
           <div class="cdesc">Global car rental giant at Lagos and Abuja airports. Economy to full-size SUVs. Corporate accounts available.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.3</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From approx.</div><div class="ps-from">₦40k</div><div class="ps-unit">/day</div></div>
@@ -1907,6 +2146,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja · Calabar Airports | Unlimited KM</div>
           <div class="cdesc">German premium car rental at 3 Nigerian airports. Unlimited kilometres. Driver included. Min. age 18+.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.4</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From approx.</div><div class="ps-from">₦45k</div><div class="ps-unit">/day</div></div>
@@ -1939,6 +2179,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja · Port Harcourt | Est. 2006 | 140+ countries</div>
           <div class="cdesc">Global French car rental brand operating in Nigeria since 2006. Self-drive and chauffeur options. Locations at Lagos, Abuja and Port Harcourt airports. Long-term and monthly packages available.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.5</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">Request</div><div class="ps-unit">a quote</div></div>
@@ -1975,6 +2216,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja · PH · Warri · Ibadan | Est. 2010</div>
           <div class="cdesc">Nigeria's #1 car hire platform. 100+ vehicles, 5,000+ customers. Economy to luxury, self-drive, airport, weddings and moving trucks.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.8</span><span class="rvc">(5,000+ customers)</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">Economy from</div><div class="ps-from">₦80k</div><div class="ps-unit">/day</div></div>
@@ -2015,6 +2257,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja · Port Harcourt | 200+ vehicles</div>
           <div class="cdesc">Nigeria's largest premium fleet. Budget Corolla to Rolls Royce Ghost. Weddings, music videos, VIP events, celebrity airport transfers.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.7</span><span class="rvc">(350+ reviews)</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦20k</div><div class="ps-unit">/day</div></div>
@@ -2058,6 +2301,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Nationwide</div>
           <div class="cdesc">Self-drive, chauffeur, armoured vehicles and fleet management. Security escort, corporate fleet and event transport. Multiple pick-up locations.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.6</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">Self-drive from</div><div class="ps-from">₦25k</div><div class="ps-unit">/day</div></div>
@@ -2093,6 +2337,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Wuse II, Abuja · Lagos · Port Harcourt · Owerri · Uyo | App-based</div>
           <div class="cdesc">Tech-powered luxury car hire and ride-hailing. Rolls-Royce, Bentley, Mercedes, Range Rover, Land Cruiser available. Interstate travel, VIP events, airport transfers. Nairaxi app for instant booking.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.8</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦60k</div><div class="ps-unit">/day</div></div>
@@ -2120,6 +2365,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Gbangbala Street, Lekki Phase 1, Lagos | 22k+ Instagram followers</div>
           <div class="cdesc">Lekki-based chauffeur-driven luxury car hire. Fleet management, security escort and airport pickups. Highly rated on Instagram with 22k+ followers. Premium concierge transport for business and events.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.7</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦45k</div><div class="ps-unit">/day</div></div>
@@ -2147,6 +2393,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja | 120k+ Instagram followers | Private Jet Charter available</div>
           <div class="cdesc">Nigeria's most-followed car hire brand on Instagram with 120k+ fans. Covers Lagos and Abuja. Ferrari, Mercedes S550/G63 AMG, Toyota Sienna, Bulletproof Land Cruiser. Private jet charter also available.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.8</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦50k</div><div class="ps-unit">/day</div></div>
@@ -2174,6 +2421,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 30b Oyibo Adjarho Street, Lekki Phase 1, Lagos | CAC Registered, Est. 2014</div>
           <div class="cdesc">CAC-registered Lagos car rental company operating since 2014. Airport pickups, short and long-term leasing, logistics, protocol and escort services, driver outsourcing, and fleet management. Serves both corporate organisations and individuals.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.4</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
@@ -2198,6 +2446,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos, Nigeria | theluxauto.com | Dedicated chauffeur service</div>
           <div class="cdesc">Lagos-based luxury car rental with dedicated in-house drivers on every booking. Specialises in prestige vehicles for events, corporate travel, and airport transfers. Fleet of prestigious brands including Mercedes-Benz, BMW and Range Rover.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.6</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦80k</div><div class="ps-unit">/day</div></div>
@@ -2222,6 +2471,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos, Nigeria | skymilesrental.com | GPS-tracked fleet</div>
           <div class="cdesc">Auto specialist company offering car leasing, logistics, fleet management, car sales and driver outsourcing. All vehicles are GPS-tracked. Clean, brand-new cars at affordable rates with experienced, courteous professional drivers.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.5</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦30k</div><div class="ps-unit">/day</div></div>
@@ -2246,6 +2496,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos, Nigeria | rentacarnigeria.com | Google 5-star rated</div>
           <div class="cdesc">Proudly Nigerian-owned company specialising in vehicle leasing, fleet management, chauffeur services, airport protocol, armed and non-armed security, close protection and corporate fixer services. 4+ years trusted by corporate and individual clients. Excellent Google reviews.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.8</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦40k</div><div class="ps-unit">/day</div></div>
@@ -2270,6 +2521,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos, Nigeria | @car_rental_lagos | 30k+ Instagram followers | RC: 6979810</div>
           <div class="cdesc">Premium luxury car hire with 30k+ Instagram followers. Covers Lagos and interstate. Clean fleet, effortless bookings, professional chauffeur service. Operates nationwide on request.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.5</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦45k</div><div class="ps-unit">/day</div></div>
@@ -2294,6 +2546,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja · Enugu | @grandtitan_luxury | 22k+ Instagram followers | RC: 1887073</div>
           <div class="cdesc">Multi-city luxury car hire covering Lagos, Abuja and Enugu with 22k+ Instagram followers. Airport pickups, ceremony convoys and daily hire. Chauffeur-driven. Responsive service 9am–6pm daily.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.6</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦50k</div><div class="ps-unit">/day</div></div>
@@ -2318,6 +2571,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja | @heyforsagee | 12k Instagram followers | RC: 6995783</div>
           <div class="cdesc">Luxury car rental, security escort and yacht hire in Lagos and Abuja. Daily rentals, airport services, bodyguard provision. Hassle-free refund/exchange policy. Unique lifestyle transport brand donating a share of profits to charity.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.5</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦55k</div><div class="ps-unit">/day</div></div>
@@ -2342,6 +2596,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Nationwide | @the.luxurychauffeur | 10k+ Instagram followers | RC: 1947558</div>
           <div class="cdesc">Premium lifestyle brand renting exotic and luxury cars daily, weekly and on a chauffeur or self-drive basis. Covers Nigeria nationwide. Specialises in prestige exotic vehicles for events, shoots, and high-profile occasions.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.6</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦70k</div><div class="ps-unit">/day</div></div>
@@ -2366,6 +2621,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Nigeria | rideonnigeria.co | Car Rental · Driver Hire · Fleet Mgmt · Tourism</div>
           <div class="cdesc">Nigeria's self-described number one transport company. Covers car rental, driver hire, travel and tourism, fleet management and logistics support. Dynamic organisation rendering unrivalled services nationwide.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.3</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
@@ -2390,6 +2646,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 34 Ikorodu Road, Fadeyi, Yaba, Lagos</div>
           <div class="cdesc">Premium road transport company offering car rental for interstate travel, private trips and business engagements. Covers all routes within Nigeria. Known for reliability and professional drivers on long-distance journeys.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.2</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
@@ -2414,6 +2671,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Ojodu, Lagos | Lagos · Abuja · USA offices | Est. 1997 | 150+ UBER cars</div>
           <div class="cdesc">One of Nigeria's oldest and most respected car rental companies, established 1997. Top-rated agency with offices in Lagos, Abuja and the USA. Major UBER fleet partner with 150+ cars. Delivers standard, executive, exotic and luxury cars with internet-connected vehicles.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.5</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
@@ -2438,6 +2696,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 2c Babatunde Dabiri Street, Lekki Phase 1, Lagos</div>
           <div class="cdesc">Lekki-based car hire and transport company. Serves corporate clients, wedding convoys and airport transfers. Clean fleet maintained to high standards. Accessible and well-located in Lagos Island business district.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.2</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦40k</div><div class="ps-unit">/day</div></div>
@@ -2466,6 +2725,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos</div>
           <div class="cdesc">We render our services with the utmost level of professionalism. Offering chauffeur, self-drive, airport transfers, corporate hire, wedding cars, armoured vehicles, buses and interstate travel.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">New</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦60k</div><div class="ps-unit">/day</div></div>
@@ -2533,6 +2793,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Wuse 2, Abuja FCT</div>
           <div class="cdesc">Abuja specialist serving government, NGOs and corporates. Hilux, Land Cruisers and Corolla saloons. Daily and monthly rates.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.6</span><span class="rvc">(134 reviews)</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦28k</div><div class="ps-unit">/day</div></div>
@@ -2564,6 +2825,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Floor M1, Transcorp Hilton Hotel, Maitama, Abuja</div>
           <div class="cdesc">Premium chauffeur-driven car hire based at the iconic Transcorp Hilton Hotel, Abuja. Serves diplomats, executives, and tourists. Every vehicle comes with a vetted professional driver. Night parties, weddings, corporate, airport pickups.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.6</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦50k</div><div class="ps-unit">/day</div></div>
@@ -2591,6 +2853,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Knowledge Court Estate, Galadimawa, Abuja, FCT</div>
           <div class="cdesc">Top-rated Abuja car hire and luxury car leasing company. Efficient, reliable, and top-notch service. Fleet management also available alongside general car hire and corporate transport.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.5</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦45k</div><div class="ps-unit">/day</div></div>
@@ -2618,6 +2881,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Abuja, FCT | @autopilot.ng | 12k+ followers</div>
           <div class="cdesc">Popular Abuja car hire with 12k+ Instagram followers. Daily hire, airport pickup, wedding cars and interstate travel. Clean fleet at affordable prices. Responsive and prompt service.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.6</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
@@ -2645,6 +2909,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Larry Holmes Arab Road, Kubwa AMAC, Abuja</div>
           <div class="cdesc">Reliable Abuja car hire providing daily, weekly, monthly and yearly rental and lease. Fleet includes coasters, Sienna, Mercedes G-Wagon, Toyota Corolla, Land Cruiser and more. Serves corporate and individual clients.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.3</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦30k</div><div class="ps-unit">/day</div></div>
@@ -2672,6 +2937,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Kaura Modern Market, Duboyi, Abuja, FCT</div>
           <div class="cdesc">Abuja car hire and fleet management company. Serves corporate and personal clients. Also handles car sales alongside rental services. Reliable and well-established in the FCT market.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.2</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">Request</div><div class="ps-unit">a quote</div></div>
@@ -2699,6 +2965,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Arcade Club Suites, Plot 68, First Avenue, Central Bus District, Abuja</div>
           <div class="cdesc">Centrally located Abuja car hire operating from First Avenue in the Central Business District. Prompt pickup and drop-off services. Both daily and extended hire available.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.2</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦30k</div><div class="ps-unit">/day</div></div>
@@ -2726,6 +2993,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Abuja, FCT | aisle.com.ng | Bulletproof vehicles available</div>
           <div class="cdesc">Premium Abuja car hire for airport pickups, city driving, interstate travel and VIP transport. Bulletproof and armoured vehicles available for security-conscious travellers. 70% deposit to secure bookings. Professional drivers arrive an hour early for airport collections.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.5</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦40k</div><div class="ps-unit">/day</div></div>
@@ -2750,6 +3018,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Abuja, FCT | venegow.com | Private jet charter available</div>
           <div class="cdesc">Reliable Abuja car hire with daily, weekly, monthly and yearly options. SUVs, sedans and buses. Airport shuttle, bus rental, fleet management and private jet charter. Comprehensive mobility solution for individuals and corporates.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.4</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
@@ -2774,6 +3043,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja | renttodrive.com.ng | Self-drive specialist</div>
           <div class="cdesc">Nigeria's dedicated self-drive car rental platform covering Lagos and Abuja. Choose from Lexus, Hyundai, Toyota and 4x4 vehicles for holidays, business, or vacations. Secure online booking. Adventure 4x4 vehicles available for interstate travel.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.4</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦40k</div><div class="ps-unit">/day</div></div>
@@ -2798,6 +3068,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Abuja, FCT | starrluxurycars.com | Rated Excellent on Trustpilot & Google | 24hr service</div>
           <div class="cdesc">International prestige car hire brand operating in Abuja. Self-drive and chauffeur options. Rolls-Royce, Bentley, Ferrari, Porsche Cayenne, Mercedes G63 AMG available. Optional fully-vetted bodyguards and in-car premium extras. 24-hour customer service.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.9</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">Request</div><div class="ps-unit">a quote</div></div>
@@ -2822,6 +3093,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Abuja, FCT | Jiji-verified | Reputable vehicle rental &amp; tours provider</div>
           <div class="cdesc">Reputable Abuja-based vehicle rental and tours operator. Serves both corporate and individual clients across Abuja and nationwide. Comfortable, latest cars at affordable prices for all movements within or outside Abuja.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.3</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦30k</div><div class="ps-unit">/day</div></div>
@@ -2846,6 +3118,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Plot 274, Sanusi Dantata House, Central Business District, Abuja</div>
           <div class="cdesc">Abuja car hire located in the Central Business District. Reliable, affordable daily and long-term car rental for corporate and individual clients. Prime location in Abuja's commercial heart.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.1</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦30k</div><div class="ps-unit">/day</div></div>
@@ -2870,6 +3143,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Agura Hotel, Moshood Abiola Road, Garki, Abuja — Area 7</div>
           <div class="cdesc">Car hire service based inside Abuja's iconic Agura Hotel. Serves hotel guests, diplomatic visitors and corporate clients. Convenient central Abuja location. Reliable fleet for city and interstate journeys.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.2</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
@@ -2894,6 +3168,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 1 Aguiyi Ironsi Street, Maitama, Abuja</div>
           <div class="cdesc">Maitama Abuja car rental company offering quality daily and long-term hire. Corporate and private clients welcome. Services to and from Nnamdi Azikiwe Airport and interstate movements. Reputable family-run business.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.1</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦30k</div><div class="ps-unit">/day</div></div>
@@ -2918,6 +3193,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Plot 77/78, Adetokunbo Ademola Crescent Extension 238, Wuse II, Abuja</div>
           <div class="cdesc">Dependable Abuja car hire operating from Wuse II. Serves corporate clients, airport pickups and daily hires. Consistent, professional and reliable service for discerning clients in the Federal Capital Territory.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.2</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦30k</div><div class="ps-unit">/day</div></div>
@@ -2949,6 +3225,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 GRA Phase 2, Port Harcourt</div>
           <div class="cdesc">PH's premier hire serving oil &amp; gas sector, executives and government. Hilux to Bulletproof LX570. Full-day bookings only.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.8</span><span class="rvc">(91 reviews)</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦40k</div><div class="ps-unit">/day</div></div>
@@ -2984,6 +3261,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Port Harcourt, Rivers State | Also covering Owerri & Uyo</div>
           <div class="cdesc">Nairaxi luxury car hire Port Harcourt branch. Hilux, Toyota Prado, Lexus GX460, Land Cruiser, Bulletproof LX570 and Coaster buses. Specialist in oil & gas sector corporate transport across the Niger Delta.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.7</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦60k</div><div class="ps-unit">/day</div></div>
@@ -3018,6 +3296,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Independence Layout, Enugu State</div>
           <div class="cdesc">Southeast Nigeria's trusted hire. Innoson IVM, Hiace, Peugeot 406. Covers Enugu, Awka, Onitsha, Owerri.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.7</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦18k</div><div class="ps-unit">/day</div></div>
@@ -3047,6 +3326,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Effurun, Delta State</div>
           <div class="cdesc">Delta State's leading hire. Ford Rangers, Hilux and Hiace for oil sector, government and private clients.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.3</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦20k</div><div class="ps-unit">/day</div></div>
@@ -3078,6 +3358,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Abuja · Benin City · Lagos · Delta · Port Harcourt | RC: 7266488</div>
           <div class="cdesc">Multi-state car rental covering Abuja, Benin City, Lagos, Delta and Port Harcourt. Luxury cars, outsourced drivers, VIP security escort and fleet management. Registered company (RC 7266488).</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.3</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
@@ -3105,6 +3386,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Owerri, Imo State | Also covering Enugu & Awka</div>
           <div class="cdesc">Nairaxi luxury car hire covering Owerri and Southeast Nigeria. Mercedes-Benz, BMW, Audi, Range Rover available for business, weddings, events and airport transfers. Chauffeur-driven with transparent pricing.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.6</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦60k</div><div class="ps-unit">/day</div></div>
@@ -3132,6 +3414,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Ibadan, Oyo State · Kano, Kano State | Nationwide operator</div>
           <div class="cdesc">Naijacarhire.com coverage in Ibadan and Kano. Reliable vehicles for interstate travel, corporate hire and airport transfers across North and Southwest Nigeria. Daily and weekly rates available.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span></span><span class="se">★</span><span class="rv">4.5</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
@@ -3159,6 +3442,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Nigeria | magnicarz.com | Car hire, sales &amp; airport pickups</div>
           <div class="cdesc">All-in-one premium car rental, auto sales, and executive airport pickup service across Nigeria. Luxury rides at competitive prices with reliable service. Book a luxury hire or purchase your dream car through the same platform.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.4</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦40k</div><div class="ps-unit">/day</div></div>
@@ -3183,6 +3467,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Asaba International Airport, Delta State</div>
           <div class="cdesc">Airport-based car hire at Asaba International Airport, Delta State. Two operators serving arrivals: Marthz Car Hire and Ambassador Car Hire. Daily hire, security escort, and airport-to-city transfers within Asaba and Delta State.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.1</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦25k</div><div class="ps-unit">/day</div></div>
@@ -3214,6 +3499,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja · Port Harcourt | NGX-listed | 1,000+ vehicles</div>
           <div class="cdesc">Nigeria's largest vehicle leasing company. Full fleet management, corporate transport. Operates Hertz Nigeria franchise. Serves multinationals and government.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.6</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">Starting from</div><div class="ps-from">Request</div><div class="ps-unit">a quote</div></div>
@@ -3246,6 +3532,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 Lagos · Abuja · Port Harcourt · Owerri · Kano · Uyo | App & Web booking</div>
           <div class="cdesc">Technology-powered luxury car hire operating nationwide across 6+ cities. Rolls-Royce, Bentley, Ferrari, Range Rover, Mercedes and more. Airport transfers, interstate travel, event transport and VIP concierge.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.8</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦60k</div><div class="ps-unit">/day</div></div>
@@ -3273,6 +3560,7 @@ footer { background: #070A08; border-top: 1px solid rgba(0,201,107,.12); }
           <div class="cloc">📍 All major cities in Nigeria | fleetpartners.ng | 10+ years experience</div>
           <div class="cdesc">10+ years of vehicle leasing and fleet management across Nigeria. Operate lease, finance lease, fleet technology, onshore vessel leasing and fleet management solutions. Covers Lagos, Abuja, Port Harcourt and other major cities. Affordable payment structures.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.4</span></div></div>
+        <button class="btn-mobile-book" onclick="openBooking(this)">Book Now →</button>
         </div>
         <div class="card-right">
           <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">Request</div><div class="ps-unit">a quote</div></div>
