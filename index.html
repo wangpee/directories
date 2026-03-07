@@ -305,6 +305,26 @@ nav a:hover{color:#fff;background:rgba(255,255,255,.08);}
 .info-box{background:var(--green-light);border:1px solid #a8d8bc;border-radius:7px;padding:11px 14px;margin-bottom:20px;font-size:.81rem;color:#145a32;line-height:1.6;}
 .sec-hdr{display:flex;align-items:center;justify-content:space-between;margin:34px 0 16px;padding-bottom:11px;border-bottom:1px solid var(--border);}
 .sec-hdr:first-of-type{margin-top:0;}
+/* ── Vehicle Search Results Panel ── */
+#vehicleResults{display:none;margin-bottom:32px;}
+#vehicleResults.show{display:block;}
+.vr-heading{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--green);display:flex;align-items:center;gap:8px;}
+.vr-heading span.vr-count{background:var(--green);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:20px;}
+.vr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.vr-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--r);padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:box-shadow .2s,border-color .2s;cursor:pointer;}
+.vr-card:hover{box-shadow:0 6px 24px rgba(12,124,68,.13);border-color:var(--green);}
+.vr-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.vr-car-name{font-size:1rem;font-weight:700;color:var(--ink);line-height:1.3;}
+.vr-car-type{font-size:.78rem;color:var(--gray);background:var(--gray-light);padding:3px 9px;border-radius:20px;white-space:nowrap;align-self:flex-start;margin-top:2px;}
+.vr-price{font-size:1.05rem;font-weight:700;color:var(--green-dark);}
+.vr-price small{font-size:.72rem;font-weight:400;color:var(--gray);}
+.vr-company{display:flex;align-items:center;gap:7px;padding-top:8px;border-top:1px solid var(--border);}
+.vr-company-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.vr-company-name{font-size:.82rem;color:var(--gray);flex:1;}
+.vr-company-city{font-size:.75rem;color:var(--green-dark);background:var(--green-light);padding:2px 8px;border-radius:10px;}
+.vr-book-btn{display:inline-flex;align-items:center;gap:5px;background:var(--green);color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:.8rem;font-weight:600;cursor:pointer;margin-top:2px;transition:background .15s;}
+.vr-book-btn:hover{background:var(--green-dark);}
+@media(max-width:600px){.vr-grid{grid-template-columns:1fr;}}
 .sec-left{display:flex;align-items:center;gap:10px;}
 .sec-emoji{font-size:1.3rem;}
 .sec-title{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;}
@@ -1211,6 +1231,11 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
 
 <main class="main" id="main">
   <div class="results-bar"><p class="rc">Showing <strong id="rcount">65+</strong> companies</p></div>
+  <!-- VEHICLE SEARCH RESULTS PANEL -->
+  <div id="vehicleResults">
+    <div class="vr-heading">🚗 Vehicles matching your search &nbsp;<span class="vr-count" id="vrCount">0</span></div>
+    <div class="vr-grid" id="vrGrid"></div>
+  </div>
   <div class="info-box">🛡️ <strong>Book with confidence.</strong> All rentals are arranged through DriveDir — we handle your booking, verify the company, and confirm availability before you pay anything. <a href="javascript:void(0)" onclick="openBooking(null)" style="color:var(--green-dark);font-weight:700;text-decoration:underline;">Make a booking request →</a></div>
   <div class="no-results" id="nr"><div style="font-size:2.8rem;margin-bottom:10px">🔍</div><h3>No companies found</h3><p>Try adjusting your filters or <button onclick="resetF()" style="background:none;border:none;color:var(--green);font-weight:700;cursor:pointer;font-size:inherit">clear all filters</button></p></div>
 
@@ -2981,17 +3006,112 @@ function runSearch() {
   vehicleQuery = q;
   vehicleSearchActive = q.length > 0;
   document.getElementById('sugBox').innerHTML = '';
+  if (vehicleSearchActive) {
+    buildAndShowVehicleResults(q);
+  } else {
+    hideVehicleResults();
+  }
   applyFilters();
 }
 
+function buildAndShowVehicleResults(q) {
+  var grid = document.getElementById('vrGrid');
+  var countEl = document.getElementById('vrCount');
+  var panel = document.getElementById('vehicleResults');
+  if (!grid || !panel) return;
+
+  var cityFilter = (document.getElementById('fc') || {}).value || 'all';
+  var svcFilter  = (document.getElementById('fs') ? document.getElementById('fs').value : 'all');
+
+  // Collect matching vehicles from vehicleIndex
+  var matches = [];
+  vehicleIndex.forEach(function(v) {
+    var matchesQ = v.carName.toLowerCase().indexOf(q) !== -1
+                || v.carType.toLowerCase().indexOf(q) !== -1
+                || v.company.toLowerCase().indexOf(q) !== -1;
+    if (!matchesQ) return;
+
+    // City filter
+    var matchesCity = cityFilter === 'all'
+      || v.cityList.indexOf(cityFilter.toLowerCase()) !== -1
+      || cityFilter === 'Nationwide';
+    if (!matchesCity) return;
+
+    // Service filter — check against the card's data-svc attribute
+    if (svcFilter !== 'all') {
+      var ds = v.card.dataset.svc || '';
+      if (ds.toLowerCase().indexOf(svcFilter.slice(0,4).toLowerCase()) === -1) return;
+    }
+
+    matches.push(v);
+  });
+
+  // Render cards
+  grid.innerHTML = '';
+  matches.forEach(function(v) {
+    var cityLabel = (v.cityList[0] || '').replace(/\w/g, function(c){return c.toUpperCase();});
+
+    // Seats info
+    var vcard = v.card.querySelectorAll('.vcard');
+    var seatsText = '';
+    vcard.forEach(function(vc) {
+      var nm = (vc.querySelector('.vcar-name') || {}).textContent || '';
+      if (nm.trim() === v.carName) {
+        var si = vc.querySelector('.vcar-seats');
+        if (si) seatsText = si.textContent.trim();
+      }
+    });
+
+    var el = document.createElement('div');
+    el.className = 'vr-card';
+    el.innerHTML =
+      '<div class="vr-card-top">' +
+        '<div class="vr-car-name">' + v.carName + '</div>' +
+        (v.carType ? '<div class="vr-car-type">' + v.carType + '</div>' : '') +
+      '</div>' +
+      '<div class="vr-price">' + (v.price || '—') + '<small> /day</small></div>' +
+      (seatsText ? '<div style="font-size:.78rem;color:var(--gray)">' + seatsText + '</div>' : '') +
+      '<div class="vr-company">' +
+        '<div class="vr-company-dot"></div>' +
+        '<div class="vr-company-name">' + v.company + '</div>' +
+        (cityLabel ? '<div class="vr-company-city">' + cityLabel + '</div>' : '') +
+      '</div>' +
+      '<button class="vr-book-btn">📩 Book via DriveDir</button>';
+
+    // Clicking the card scrolls to & highlights the company card
+    el.querySelector('.vr-book-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      openBooking(v.company);
+    });
+    el.addEventListener('click', function() {
+      // Scroll to the company card
+      v.card.style.display = '';
+      v.card.scrollIntoView({behavior:'smooth', block:'center'});
+      v.card.style.outline = '2.5px solid var(--green)';
+      v.card.style.boxShadow = '0 0 0 4px rgba(12,124,68,.15)';
+      setTimeout(function(){ v.card.style.outline=''; v.card.style.boxShadow=''; }, 2000);
+    });
+
+    grid.appendChild(el);
+  });
+
+  countEl.textContent = matches.length;
+  panel.classList.toggle('show', matches.length > 0);
+}
+
+function hideVehicleResults() {
+  var panel = document.getElementById('vehicleResults');
+  if (panel) { panel.classList.remove('show'); }
+  var grid = document.getElementById('vrGrid');
+  if (grid) grid.innerHTML = '';
+}
+
 function getVehicleMatchScore(card, q) {
-  // Returns true if any vehicle name/type in this card matches query
   if (!q) return true;
   var found = false;
   card.querySelectorAll('.vcar-name, .vcar-type').forEach(function(el) {
     if (el.textContent.toLowerCase().indexOf(q) !== -1) found = true;
   });
-  // Also match company name
   var cname = (card.querySelector('.cname') || {}).textContent || '';
   if (cname.toLowerCase().indexOf(q) !== -1) found = true;
   return found;
@@ -3116,6 +3236,7 @@ function resetF() {
   var fv = document.getElementById('fv'); if (fv) fv.value = '';
   var box = document.getElementById('sugBox'); if (box) box.innerHTML = '';
   var banner = document.getElementById('searchBanner'); if (banner) banner.classList.remove('show');
+  hideVehicleResults();
   document.querySelectorAll('.ctab').forEach(function(t){ t.classList.remove('active'); });
   var firstTab = document.querySelector('.ctab');
   if (firstTab) firstTab.classList.add('active');
