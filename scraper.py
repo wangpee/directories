@@ -334,8 +334,6 @@ def word_overlap(a: str, b: str) -> int:
 
 def compare_prices(current: list, scraped: list) -> list:
     changes = []
-    changes.append({"vehicle": "TEST VEHICLE", "note": "This is a test alert — delete me"})
-    return changes
     for sv in scraped:
         sv_name = sv.get("vehicle", "")
         best = max(current, key=lambda c: word_overlap(sv_name, c.get("vehicle", "")), default=None)
