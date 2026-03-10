@@ -344,7 +344,7 @@ def compare_prices(current: list, scraped: list) -> list:
                 s_val, c_val = sv.get(field), best.get(field)
                 if s_val and c_val and s_val != c_val:
                     pct = abs(s_val - c_val) / c_val * 100
-                    if pct > 0:
+                    if pct > 5:
                         diffs[field] = {"old": c_val, "new": s_val, "change_pct": round(pct, 1)}
             if diffs:
                 changes.append({"vehicle": sv_name, "matched_to": best["vehicle"], "changes": diffs})
