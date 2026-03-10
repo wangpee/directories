@@ -6854,11 +6854,15 @@ function enhanceLogos() {
       'display:block',
     ].join(';');
 
-    // Show img immediately, hide lc — if img fails onerror shows lc again
+    // Show img immediately, hide lc text — onerror restores it
     lc.style.display = 'none';
+    // Also hide the .cname text since logo already identifies the company
+    var cname = card.querySelector('.cname');
+    if (cname) cname.style.display = 'none';
     img.onerror = function() {
       img.style.display = 'none';
       lc.style.display = '';
+      if (cname) cname.style.display = '';
     };
     logoBox.insertBefore(img, lc);
   });
