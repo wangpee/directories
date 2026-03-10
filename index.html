@@ -4565,10 +4565,12 @@ function applyFilters() {
   var cityTab = activeCityFilter;
   var type = document.getElementById('ft') ? document.getElementById('ft').value : 'all';
   var svc  = document.getElementById('fs') ? document.getElementById('fs').value : 'all';
-  var cards = document.querySelectorAll('.company-card');
+  var isFiltered = cityTab !== 'all' || type !== 'all' || svc !== 'all' || vehicleSearchActive;
   var n = 0;
 
-  cards.forEach(function(card) {
+  // --- Step 1: Determine which cards match ---
+  var allCards = document.querySelectorAll('.company-card');
+  allCards.forEach(function(card) {
     var dc = card.dataset.city || '';
     var dt = card.dataset.type || '';
     var ds = card.dataset.svc  || '';
@@ -4596,25 +4598,51 @@ function applyFilters() {
     }
 
     var tm = type === 'all' || dt === type;
-    var sm = svc  === 'all' || ds.toLowerCase().indexOf(svc.slice(0,4).toLowerCase()) !== -1;
+    var sm = svc === 'all' || ds.toLowerCase().indexOf(svc.slice(0,4).toLowerCase()) !== -1;
     var vm = !vehicleSearchActive || getVehicleMatchScore(card, vehicleQuery);
-    var show = cm && tm && sm && vm;
-    card.style.display = show ? '' : 'none';
-    if (show) n++;
+    card._show = cm && tm && sm && vm;
+    if (card._show) n++;
   });
 
-  // Show/hide section headers + clists
-  document.querySelectorAll('.sec-hdr').forEach(function(hdr) {
-    var sib = hdr.nextElementSibling;
-    while (sib && !sib.classList.contains('clist')) sib = sib.nextElementSibling;
-    if (!sib) { hdr.style.display = ''; return; }
-    var anyVisible = false;
-    sib.querySelectorAll('.company-card').forEach(function(card) {
-      if (card.style.display !== 'none') anyVisible = true;
+  if (!isFiltered) {
+    // --- Default "All Cities" view: restore original sectioned layout ---
+    allCards.forEach(function(card) { card.style.display = ''; });
+    document.querySelectorAll('.sec-hdr').forEach(function(hdr) { hdr.style.display = ''; });
+    document.querySelectorAll('.clist').forEach(function(cl) { cl.style.display = ''; });
+  } else {
+    // --- Filtered view: use a single flat results grid ---
+    // Hide all section headers and original clists
+    document.querySelectorAll('.sec-hdr').forEach(function(hdr) { hdr.style.display = 'none'; });
+    document.querySelectorAll('.clist').forEach(function(cl) { cl.style.display = 'none'; });
+    // Hide all cards in their original positions
+    allCards.forEach(function(card) { card.style.display = 'none'; });
+
+    // Get or create unified results grid (inserted once before all sections)
+    var unified = document.getElementById('unified-results');
+    if (!unified) {
+      unified = document.createElement('div');
+      unified.id = 'unified-results';
+      unified.className = 'clist';
+      unified.style.cssText = 'padding:0 40px 40px;box-sizing:border-box;';
+      var main = document.getElementById('main');
+      if (main) {
+        // Insert after the no-results div
+        var nr = document.getElementById('nr');
+        if (nr && nr.nextSibling) main.insertBefore(unified, nr.nextSibling);
+        else main.appendChild(unified);
+      }
+    }
+    unified.style.display = 'grid';
+    unified.innerHTML = '';
+
+    // Append matching cards directly into unified grid (move, not clone)
+    allCards.forEach(function(card) {
+      if (card._show) {
+        card.style.display = '';
+        unified.appendChild(card);
+      }
     });
-    hdr.style.display = anyVisible ? '' : 'none';
-    sib.style.display  = anyVisible ? '' : 'none';
-  });
+  }
 
   document.getElementById('rcount').textContent = n || '0';
   document.getElementById('nr').classList.toggle('show', n === 0);
@@ -4677,8 +4705,21 @@ function resetF() {
   var firstTab = document.querySelector('.ctab');
   if (firstTab) firstTab.classList.add('active');
   ['fc','ft','fs'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value='all'; });
-  document.querySelectorAll('.company-card').forEach(function(card){ card.style.display=''; });
+
+  // Restore cards to their original parent clists
+  document.querySelectorAll('.company-card').forEach(function(card) {
+    if (card._origParent && card._origNextSib !== undefined) {
+      if (card._origNextSib) card._origParent.insertBefore(card, card._origNextSib);
+      else card._origParent.appendChild(card);
+    }
+    card.style.display = '';
+  });
+
+  // Hide unified grid, restore section layout
+  var unified = document.getElementById('unified-results');
+  if (unified) unified.style.display = 'none';
   document.querySelectorAll('.sec-hdr, .clist').forEach(function(el){ el.style.display=''; });
+
   document.getElementById('rcount').textContent = '65+';
   document.getElementById('nr').classList.remove('show');
 }
@@ -6736,6 +6777,16 @@ function cpOpenReview() {
 /* ── Init on DOMContentLoaded ─────────────────── */
 document.addEventListener('DOMContentLoaded', function() {
   enhanceCards();
+});
+</script>
+
+<script>
+// Cache each card's original parent and next sibling so we can restore them after filtering
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.company-card').forEach(function(card) {
+    card._origParent = card.parentNode;
+    card._origNextSib = card.nextElementSibling;
+  });
 });
 </script>
 </body>
