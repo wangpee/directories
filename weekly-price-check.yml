@@ -1,0 +1,77 @@
+name: Fortnightly Price Check
+
+on:
+  schedule:
+    # Every other Monday at 8am Nigeria time (7am UTC)
+    # Runs on the 1st and 15th of each month as the closest approximation
+    - cron: "0 7 1,15 * *"
+  workflow_dispatch:
+    # Also allow manual trigger from GitHub Actions tab
+
+jobs:
+  scrape-prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install crawl4ai anthropic && crawl4ai-setup
+
+      - name: Run price scraper
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python scraper.py --html nigeria-car-rental.html
+
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: price-check-fortnightly-${{ github.run_id }}
+          path: |
+            price_changes.json
+            scrape_log.txt
+          retention-days: 90
+
+      - name: Check if any changes detected
+        id: check_changes
+        run: |
+          CHANGES=$(python -c "
+          import json
+          with open('price_changes.json') as f:
+              data = json.load(f)
+          print(data['summary']['total_changes_detected'])
+          ")
+          echo "changes=$CHANGES" >> $GITHUB_OUTPUT
+          echo "Detected $CHANGES price change(s)"
+
+      - name: Send email notification if changes found
+        if: steps.check_changes.outputs.changes != '0'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.GMAIL_USER }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          subject: "🔔 DriveDir: ${{ steps.check_changes.outputs.changes }} price change(s) detected"
+          to: rentaldir3@gmail.com
+          from: DriveDir Bot <${{ secrets.GMAIL_USER }}>
+          body: |
+            DriveDir fortnightly price check completed.
+
+            ${{ steps.check_changes.outputs.changes }} price change(s) were detected on company websites.
+
+            View the full report in the GitHub Actions artifacts:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            Download price_changes.json to see exactly what changed and which companies need updating.
+
+            ---
+            DriveDir Automated Price Monitor
