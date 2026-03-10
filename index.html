@@ -5159,6 +5159,41 @@ function openBooking(triggerEl, companyNameOverride, vehicleNameOverride) {
     // Show dropdown normally
     if (vehLocked)  { vehLocked.style.display = 'none'; }
     if (vehSelect)  { vehSelect.style.display = ''; vehSelect.value = ''; }
+
+    // ── Populate dropdown with this company's actual fleet ──────────────────
+    if (vehSelect && triggerEl) {
+      var companyCard = triggerEl.closest ? triggerEl.closest('.company-card') : null;
+      // Also check if triggered from the profile drawer (use _cpCard)
+      if (!companyCard && typeof _cpCard !== 'undefined') companyCard = _cpCard;
+      if (companyCard) {
+        var vcards = companyCard.querySelectorAll('.vcar-name');
+        if (vcards.length > 0) {
+          // Clear and rebuild options from this company's fleet
+          vehSelect.innerHTML = '<option value="">Any available</option>';
+          vcards.forEach(function(nameEl) {
+            var vcard = nameEl.closest('.vcard');
+            var typeEl = vcard ? vcard.querySelector('.vcar-type') : null;
+            var priceEl = vcard ? vcard.querySelector('.vcar-price') : null;
+            var name = nameEl.textContent.trim();
+            var type = typeEl ? typeEl.textContent.trim() : '';
+            var price = '';
+            if (priceEl) {
+              var clone = priceEl.cloneNode(true);
+              clone.querySelectorAll('.vcar-price-unit').forEach(function(u){ u.remove(); });
+              price = clone.textContent.trim();
+            }
+            var label = name + (type ? '  —  ' + type : '') + (price ? '  ·  ' + price + '/day' : '');
+            var opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = label;
+            vehSelect.appendChild(opt);
+          });
+        } else {
+          // Company has no fleet listed — show generic options
+          vehSelect.innerHTML = '<option value="">Any available</option><option>Economy Saloon</option><option>Executive Saloon</option><option>Mid SUV</option><option>Large SUV</option><option>Luxury SUV</option><option>Minivan</option><option>Bus / Hiace</option>';
+        }
+      }
+    }
   }
 
   document.getElementById('bookingModal').classList.add('open');
@@ -5727,7 +5762,7 @@ function submitContact(){
             <span id="bk-vehicle-locked-text"></span>
             <button type="button" onclick="clearBkVehicleLock()" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:.8rem;padding:0 0 0 8px;">✕ change</button>
           </div>
-          <select id="bk-vehicle" style=""><option value="">Any available</option><option>Economy Saloon (Corolla/Camry)</option><option>Executive Saloon (Camry/Accord)</option><option>Mid SUV (Prado/RAV4/Venza)</option><option>Large SUV (Land Cruiser V8)</option><option>Luxury SUV (Range Rover/GLE)</option><option>Armoured / Bulletproof</option><option>Minivan (Sienna)</option><option>Bus / Hiace (14 seats)</option><option>Coach / Coaster (25–30 seats)</option><option>Pickup Truck (Hilux/Ranger)</option><option>Wedding Car</option></select>
+          <select id="bk-vehicle" style=""><option value="">Any available</option></select>
         </div>
         <div class="bk-fg"><label>Number of Passengers</label><select id="bk-passengers"><option value="">Select…</option><option>1–2</option><option>3–4</option><option>5–7</option><option>8–14</option><option>15–25</option><option>26+</option></select></div>
       </div>
