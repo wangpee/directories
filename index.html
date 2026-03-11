@@ -350,7 +350,7 @@ nav a:hover{color:#fff;background:rgba(255,255,255,.08);}
 .sec-sub{font-size:.76rem;color:var(--gray);margin-top:1px;}
 .sec-count{font-size:.73rem;font-weight:700;color:var(--gray);background:var(--gray-light);padding:2px 8px;border-radius:11px;}
 .clist{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
-.company-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .22s,transform .22s;}
+.company-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .22s,transform .22s;max-width:420px;}
 .company-card:hover{box-shadow:0 12px 48px rgba(0,0,0,.13);transform:translateY(-2px);}
 .company-card.featured{border-color:rgba(201,146,10,.35);}
 .card-top{display:block;}
@@ -1027,6 +1027,7 @@ header{
   transition:all .25s ease !important;
   overflow:hidden;
   background:#fff !important;
+  max-width:420px;
 }
 .company-card:hover{
   box-shadow:0 16px 48px rgba(0,0,0,.12),0 0 0 2px #00D26A !important;
@@ -3300,7 +3301,11 @@ footer { background:#1a1a1a !important; border-top:none !important; }
           <div class="cdesc">All-in-one premium car rental, auto sales, and executive airport pickup service across Nigeria. Luxury rides at competitive prices with reliable service. Book a luxury hire or purchase your dream car through the same platform.</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.4</span></div></div>
         </div>
-  </div><!-- /lagos -->
+      </div>
+          <div class="rv-strip" id="rvs-co-magnicarz-auto-sales-and-rentals"><span class="rv-stars" id="rvstars-co-magnicarz-auto-sales-and-rentals"></span><span class="rv-avg" id="rvavg-co-magnicarz-auto-sales-and-rentals"></span><span class="rv-count" id="rvcount-co-magnicarz-auto-sales-and-rentals"></span><button class="rv-btn" onclick="openReviewModal(this)">✍ Write a Review</button></div>
+    </div>
+</div><!-- /lagos -->
+
 
   <!-- ABUJA -->
   <div class="sec-hdr" id="abuja">
@@ -3743,9 +3748,24 @@ footer { background:#1a1a1a !important; border-top:none !important; }
           <div class="cdesc">Multi-state car rental covering Abuja, Benin City, Lagos, Delta and Port Harcourt. Luxury cars, outsourced drivers, VIP security escort and fleet management. Registered company (RC 7266488).</div>
           <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.3</span></div></div>
         </div>
+        <div class="card-right">
+          <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦80k</div><div class="ps-unit">/day</div></div>
+          <div class="card-btns"><button class="btn-view" onclick="openBooking(this)">Request This Vehicle →</button></div>
+        </div>
+      </div>
+      <div class="rv-strip" id="rvs-co-swiftdrive-services"><span class="rv-stars" id="rvstars-co-swiftdrive-services"></span><span class="rv-avg" id="rvavg-co-swiftdrive-services"></span><span class="rv-count" id="rvcount-co-swiftdrive-services"></span><button class="rv-btn" onclick="openReviewModal(this)">✍ Write a Review</button></div>
+      <div class="fleet-section">
+        <button class="fleet-toggle" onclick="toggleFleet(this)">
+          <span>Fleet (3 vehicles)</span>
+          <svg class="ft-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="fleet-body"><div class="fleet-group"><div class="fg-label">🚗 Fleet</div><div class="vgrid"><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Camry</div><div class="vcar-type">Executive Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦80,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Toyota Prado</div><div class="vcar-type">Mid SUV</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦150,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🛡️</div><div><div class="vcar-name">Armoured SUV</div><div class="vcar-type">VIP Security</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦280,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail call"><div class="avail-dot"></div>Enquire</div></div></div></div></div></div></div>
+      </div>
+    </div>
   </div><!-- /abuja -->
 
   <!-- PORT HARCOURT -->
+
   <div class="sec-hdr" id="ph">
     <div class="sec-left"><div><div class="sec-title"><span>Port Harcourt</span> Car Rental Companies</div><div class="sec-sub">Rivers State — Nigeria's oil &amp; gas hub</div></div></div>
     <span class="sec-count">2 companies</span>
@@ -3885,23 +3905,6 @@ footer { background:#1a1a1a !important; border-top:none !important; }
       </div>
     </div>
     </div><!-- /co-warri-delta-autos -->
-        <div class="card-right">
-          <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
-          <div class="card-btns"><button class="btn-view" onclick="openBooking(this)">Request This Vehicle →</button></div>
-        </div>
-      </div>
-      <div class="rv-strip" id="rvs-co-swiftdrive-services"><span class="rv-stars" id="rvstars-co-swiftdrive-services"></span><span class="rv-avg" id="rvavg-co-swiftdrive-services"></span><span class="rv-count" id="rvcount-co-swiftdrive-services"></span><button class="rv-btn" onclick="openReviewModal(this)">✍ Write a Review</button></div>
-      <div class="fleet-section">
-        <button class="fleet-toggle" onclick="toggleFleet(this)">
-          <div class="ft-left">🚗 View Fleet &amp; Prices <span class="ft-count">5 vehicles</span></div>
-          <svg class="ft-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="fleet-body">
-          
-          <div class="fleet-group"><div class="fg-label">🚗 Fleet</div><div class="vgrid"><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Camry</div><div class="vcar-type">Executive Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦80,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Toyota Prado</div><div class="vcar-type">Mid SUV</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦120,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Land Cruiser</div><div class="vcar-type">Large SUV</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦200,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Luxury Sedan</div><div class="vcar-type">Mercedes / BMW</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦200,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🛡️</div><div><div class="vcar-name">VIP Security Vehicle</div><div class="vcar-type">Escort / Convoy</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦280,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail call"><div class="avail-dot"></div>Enquire</div></div></div></div></div></div>
-        </div>
-      </div>
-    </div>
     <div class="company-card" data-city="Owerri Enugu" data-type="Local" data-svc="Airport Corporate Wedding" data-cid="co-nairaxi-owerri-southeast" data-action="open-profile-card">
       <div class="card-top">
         <div class="card-logo"><div class="lc" style="background:linear-gradient(135deg,#7b1fa2,#4a0072);font-size:.75rem;">NXO</div></div>
@@ -3958,33 +3961,23 @@ footer { background:#1a1a1a !important; border-top:none !important; }
         </div>
       </div>
     </div>
-        <div class="card-right">
-          <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦40k</div><div class="ps-unit">/day</div></div>
-          <div class="card-btns"><button class="btn-view" onclick="openBooking(this)">Request This Vehicle →</button></div>
-        </div>
-      </div>
-      <div class="rv-strip" id="rvs-co-magnicarz-auto-sales-and-rentals"><span class="rv-stars" id="rvstars-co-magnicarz-auto-sales-and-rentals"></span><span class="rv-avg" id="rvavg-co-magnicarz-auto-sales-and-rentals"></span><span class="rv-count" id="rvcount-co-magnicarz-auto-sales-and-rentals"></span><button class="rv-btn" onclick="openReviewModal(this)">✍ Write a Review</button></div>
-      <div class="fleet-section">
-        <button class="fleet-toggle" onclick="toggleFleet(this)">
-          <div class="ft-left">🚗 View Fleet &amp; Prices <span class="ft-count">5 vehicles</span></div>
-          <svg class="ft-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="fleet-body"><div class="fleet-group"><div class="fg-label">🚗 Fleet</div><div class="vgrid"><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Camry</div><div class="vcar-type">Executive Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦85,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Toyota Prado</div><div class="vcar-type">Mid SUV</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦130,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Lexus LX 570</div><div class="vcar-type">Luxury SUV</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦220,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Mercedes-Benz E-Class</div><div class="vcar-type">Luxury Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦170,000<spn class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚐</div><div><div class="vcar-name">Toyota Sienna</div><div class="vcar-type">MPV / 7-seat</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦90,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div></div></div></div>
-      </div>
-    </div>
-    <div class="company-card " data-city="Asaba Warri" data-type="Local" data-svc="Airport Corporate" data-cid="co-asaba-airport-car-hire-services-marthz-a" data-action="open-profile-card">
+
+
+
+  </div>
+
+    <div class="company-card" data-city="Asaba Warri" data-type="Local" data-svc="Airport Corporate" data-cid="co-asaba-airport-car-hire-services-marthz-a" data-action="open-profile-card">
       <div class="card-top">
         <div class="card-logo"><div class="lc" style="background:linear-gradient(135deg,#006064,#003840);font-size:.75rem;">ASB</div></div>
         <div class="card-info">
-          
           <div class="card-badges"><span class="bdg b-local">🇳🇬 Nigerian</span><span class="bdg b-air">✈ Airport</span><span class="bdg b-corp">🏢 Corporate</span></div>
           <div class="cname">Asaba Airport Car Hire Services (Marthz / Ambassador)</div>
-          <div class="cloc">📍 Asaba International Airport, Delta State</div>
-          <div class="cdesc">Airport-based car hire at Asaba International Airport, Delta State. Two operators serving arrivals: Marthz Car Hire and Ambassador Car Hire. Daily hire, security escort, and airport-to-city transfers within Asaba and Delta State.</div>
-          <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="rv">4.1</span></div></div>
+          <div class="cloc">📍 Asaba, Delta State | Also serving Warri & environs</div>
+          <div class="cdesc">Reliable airport transfer and car hire based in Asaba. Covers Asaba Airport, Warri, Sapele and Delta State corridor. Saloons, SUVs and minibuses available. Driver-inclusive bookings.</div>
+          <div class="cmeta"><div class="stars"><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="se">★</span><span class="rv">4.2</span></div></div>
         </div>
         <div class="card-right">
-          <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦25k</div><div class="ps-unit">/day</div></div>
+          <div class="price-sum"><div class="ps-label">From</div><div class="ps-from">₦35k</div><div class="ps-unit">/day</div></div>
           <div class="card-btns"><button class="btn-view" onclick="openBooking(this)">Request This Vehicle →</button></div>
         </div>
       </div>
@@ -3994,7 +3987,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
           <div class="ft-left">🚗 View Fleet &amp; Prices <span class="ft-count">3 vehicles</span></div>
           <svg class="ft-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div class="fleet-body"><div class="fleet-group"><div class="fg-label">🚗 Fleet</div><div class="vgrid"><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Corolla</div><div class="vcar-type">Economy Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦60,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Camry</div><div class="vcar-type">Executive Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦80,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Toyota Prado</div><div class="vcar-type">Mid SUV</div></div></div><div class=card-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦120,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div></div></div></div>
+        <div class="fleet-body"><div class="fleet-group"><div class="fg-label">🚗 Fleet</div><div class="vgrid"><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Corolla</div><div class="vcar-type">Economy Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦35,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Camry</div><div class="vcar-type">Executive Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦50,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Toyota Prado</div><div class="vcar-type">Mid SUV</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦100,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div></div></div></div>
       </div>
     </div>
   </div><!-- /others -->
@@ -4005,6 +3998,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
     <span class="sec-count">3 companies</span>
   </div>
   <div class="clist">
+
     <div class="company-card" data-city="Lagos Abuja Port Harcourt Nationwide" data-type="Local" data-svc="Corporate Airport Armoured" data-cid="co-candi-leasing-plc-fleet-division" data-action="open-profile-card">
       <div class="card-top">
         <div class="card-logo"><div class="lc" style="background:linear-gradient(135deg,#1b5e20,#0a330d);">CI</div></div>
@@ -4037,6 +4031,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
         </div>
       </div>
     </div>
+
     <div class="company-card  featured" data-city="Lagos Abuja Port Harcourt Owerri Kano Uyo Nationwide" data-type="Local" data-svc="Airport Corporate Wedding Armoured" data-cid="co-nairaxi-luxury-car-rentals-nationwide" data-action="open-profile-card">
       <div class="card-top">
         <div class="card-logo"><div class="lc" style="background:linear-gradient(135deg,#6a1b9a,#38006b);font-size:.75rem;">NX</div></div>
@@ -4065,6 +4060,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
         </div>
       </div>
     </div>
+
     <div class="company-card " data-city="Lagos Abuja Port Harcourt Nationwide" data-type="Local" data-svc="Corporate Airport Interstate" data-cid="co-fleetpartners-leasing-nigeria" data-action="open-profile-card">
       <div class="card-top">
         <div class="card-logo"><div class="lc" style="background:linear-gradient(135deg,#1a237e,#0d1257);font-size:.75rem;">FP</div></div>
@@ -4090,7 +4086,8 @@ footer { background:#1a1a1a !important; border-top:none !important; }
         <div class="fleet-body"><div class="fleet-note">Finance lease, operate lease, and full fleet management available.</div><div class="fleet-group"><div class="fg-label">🚗 Lease Fleet</div><div class="vgrid"><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Economy Saloons</div><div class="vcar-type">Corolla, Camry etc.</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦600k+<span class="vcar-price-unit">/month</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Executive SUVs</div><div class="vcar-type">Prado, GX, LX etc.</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦1.2M+<span class="vcar-price-unit">/month</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚐</div><div><div class="vcar-name">Buses & Shuttles</div><div class="vcar-type">Hiace, Coaster</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦800k+<span class="vcar-price-unit">/month</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">⛵</div><div><div class="vcar-name">Onshore Vessels</div><div class="vcar-type">Marine vessels</div></div></div>div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">Request<span class="vcar-price-unit">/month</span></span></div><div class="vcar-row"><div class="avail call"><div class="avail-dot"></div>Enquire</div></div></div></div></div></div>
       </div>
     </div>
-  </div><!-- /national -->
+  </div>
+  <!-- /national -->
 
   <!-- SUBMIT CTA -->
   <div class="submit-box">
@@ -5563,10 +5560,7 @@ function renderApprovedListings() {
           '<div class="cloc">&#128205; '+l.city+' | '+l.fleet+' fleet</div>'+
           '<div class="cdesc">'+(l.desc||'Car rental company listed on DriveDir.')+'</div>'+
         '</div>'+
-        '<div class="card-right">'+
-          '<div class="price-sum"><div class="ps-label">Starting from</div><div class="ps-from">Request</div><div class="ps-unit">a quote</div></div>'+
-          '<div class="card-btns"><button class="btn-view" onclick="openBooking(this)">Request This Vehicle &#8594;</button></div>'+
-        '</div>'+
+        ''+
       '</div>'+
       (vehCards ?
         '<div class="fleet-section">'+
@@ -6221,6 +6215,7 @@ function rvInitAllStrips(){
 /* ── Open review modal ───────────────────────── */
 function openReviewModal(btn){
   var card = btn.closest('.company-card');
+  if (!card) return;
   _rmCid   = card.getAttribute('data-cid');
   var cnameEl = card.querySelector('.cname');
   var cname   = cnameEl ? cnameEl.textContent.trim() : 'This Company';
@@ -6666,6 +6661,7 @@ var COMPANY_DOMAINS = {
 };
 
 function openProfile(card) {
+  if (!card) return;
   _cpCard = card;
   _cpCurrentTab = 'overview';
 
@@ -6950,7 +6946,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Event delegation: handle all profile-opening clicks globally
   document.body.addEventListener('click', function(e) {
     // View details button
-    if (e.target.getAttribute('data-action') === 'open-profile') {
+    if (e.target && e.target.getAttribute && e.target.getAttribute('data-action') === 'open-profile') {
       e.stopPropagation();
       var card = e.target.closest('.company-card');
       if (card) openProfile(card);
