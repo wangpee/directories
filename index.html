@@ -6599,6 +6599,31 @@ function enhanceCards() {
 var _cpCard = null;
 var _cpCurrentTab = 'overview';
 
+var COMPANY_DOMAINS = {
+  'co-hertz-nigeria-candi-leasing-plc':         'hertz.com',
+  'co-sixt-nigeria':                             'sixt.com',
+  'co-europcar-nigeria':                         'europcar.com',
+  'co-avis-nigeria':                             'avis.com',
+  'co-naijacarhirecom':                          'naijacarhire.com',
+  'co-jonellies-autos-jautos-car-rentals':       'jautos.com.ng',
+  'co-nairaxi-luxury-car-rentals':               'nairaxi.ng',
+  'co-nairaxi-port-harcourt':                    'nairaxi.ng',
+  'co-nairaxi-owerri-southeast':                 'nairaxi.ng',
+  'co-nairaxi-luxury-car-rentals-nationwide':    'nairaxi.ng',
+  'co-starr-luxury-cars-abuja':                  'starrluxurycars.com',
+  'co-autopilot-ng':                             'autopilot.ng',
+  'co-aisle-car-rentals':                        'aisle.com.ng',
+  'co-rent-to-drive-nigeria':                    'renttodrive.com.ng',
+  'co-fleetpartners-leasing-nigeria':            'fleetpartners.ng',
+  'co-lestat-leasing-rent-a-car-nigeria':        'rentacarnigeria.com',
+  'co-rideonnigeria':                            'rideonnigeria.co',
+  'co-magnicarz-auto-sales-and-rentals':         'magnicarz.com',
+  'co-the-lux-auto':                             'theluxauto.com',
+  'co-skymiles-rentals':                         'skymilesrental.com',
+  'co-venegow-car-rentals':                      'venegow.com',
+  'co-candi-leasing-plc-fleet-division':         'candileasing.com',
+};
+
 function openProfile(card) {
   _cpCard = card;
   _cpCurrentTab = 'overview';
@@ -6901,30 +6926,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Company Logo Enhancement ──────────────────────────────────────────
-var COMPANY_DOMAINS = {
-  'co-hertz-nigeria-candi-leasing-plc':         'hertz.com',
-  'co-sixt-nigeria':                             'sixt.com',
-  'co-europcar-nigeria':                         'europcar.com',
-  'co-avis-nigeria':                             'avis.com',
-  'co-naijacarhirecom':                          'naijacarhire.com',
-  'co-jonellies-autos-jautos-car-rentals':       'jautos.com.ng',
-  'co-nairaxi-luxury-car-rentals':               'nairaxi.ng',
-  'co-nairaxi-port-harcourt':                    'nairaxi.ng',
-  'co-nairaxi-owerri-southeast':                 'nairaxi.ng',
-  'co-nairaxi-luxury-car-rentals-nationwide':    'nairaxi.ng',
-  'co-starr-luxury-cars-abuja':                  'starrluxurycars.com',
-  'co-autopilot-ng':                             'autopilot.ng',
-  'co-aisle-car-rentals':                        'aisle.com.ng',
-  'co-rent-to-drive-nigeria':                    'renttodrive.com.ng',
-  'co-fleetpartners-leasing-nigeria':            'fleetpartners.ng',
-  'co-lestat-leasing-rent-a-car-nigeria':        'rentacarnigeria.com',
-  'co-rideonnigeria':                            'rideonnigeria.co',
-  'co-magnicarz-auto-sales-and-rentals':         'magnicarz.com',
-  'co-the-lux-auto':                             'theluxauto.com',
-  'co-skymiles-rentals':                         'skymilesrental.com',
-  'co-venegow-car-rentals':                      'venegow.com',
-  'co-candi-leasing-plc-fleet-division':         'candileasing.com',
-};
 
 function enhanceLogos() {
   document.querySelectorAll('.company-card').forEach(function(card) {
