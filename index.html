@@ -4125,9 +4125,9 @@ footer { background:#1a1a1a !important; border-top:none !important; }
     <div class="ft-col"><h4>Services</h4><a href="#">🔑 Self-Drive</a><a href="#">✈️ Airport Transfer</a><a href="#">💒 Wedding Cars</a><a href="#">🛡 Armoured VIP</a><a href="#">🏢 Corporate Fleet</a></div>
     <div class="ft-col"><h4>Company</h4><a href="javascript:void(0)" onclick="openAbout()">About DriveDir</a><a href="javascript:void(0)" onclick="openModal()">List Your Business</a><a href="javascript:void(0)" onclick="openContact()">Contact Us</a></div>
     <div class="ft-col"><h4>Connect</h4>
-      <a href="/cdn-cgi/l/email-protection#aac9c5c4decbc9deeaced8c3dccfcec3d884c9c5c7" style="display:flex;align-items:center;gap:7px;">
+      <a href="mailto:contact@drivedir.com" style="display:flex;align-items:center;gap:7px;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.7;flex-shrink:0"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        <span class="__cf_email__" data-cfemail="92f1fdfce6f3f1e6d2f6e0fbe4f7f6fbe0bcf1fdff">[email&#160;protected]</span>
+        contact@drivedir.com
       </a>
       <a href="https://instagram.com/drivedir_" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:7px;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.7;flex-shrink:0"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -5903,7 +5903,7 @@ function submitContact(){
 
     <!-- Contact channels -->
     <div class="ct-channels">
-      <div class="ct-channel"><div class="ct-ch-icon">📧</div><div><div class="ct-ch-label">Email</div><div class="ct-ch-val">contact@drivedir.com</div></div></div>
+      <div class="ct-channel"><div class="ct-ch-icon">📧</div><div><div class="ct-ch-label">Email</div><div class="ct-ch-val"><a href="mailto:contact@drivedir.com" style="color:inherit;">contact@drivedir.com</a></div></div></div>
       <div class="ct-channel"><div class="ct-ch-icon">📍</div><div><div class="ct-ch-label">Based In</div><div class="ct-ch-val">Nigeria 🇳🇬</div></div></div>
       <div class="ct-channel"><div class="ct-ch-icon">⏱️</div><div><div class="ct-ch-label">Response Time</div><div class="ct-ch-val">Within 24 hours</div></div></div>
     </div>
@@ -6093,7 +6093,7 @@ function submitContact(){
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ═══════════════════════════════════════════════
    DRIVEDIR  ·  REVIEW SYSTEM  ·  localStorage
 ═══════════════════════════════════════════════ */
@@ -6941,15 +6941,4 @@ function enhanceLogos() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', enhanceLogos);
-// Re-run after filtering (cards move to unified grid)
-var _origApplyFilters = applyFilters;
-applyFilters = function() {
-  _origApplyFilters.apply(this, arguments);
-  setTimeout(enhanceLogos, 100);
-};
-
-</script>
-<script>
-// Cache each card's original parent and next sibling so we can restore them after filtering
-document
+document.addEve
