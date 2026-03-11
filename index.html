@@ -316,7 +316,7 @@ nav a:hover{color:#fff;background:rgba(255,255,255,.08);}
 .sb-promo p{color:rgba(255,255,255,.5);font-size:.76rem;line-height:1.5;margin-bottom:11px;}
 .btn-promo{width:100%;background:var(--green);color:#fff;border:none;padding:8px;border-radius:6px;font-size:.8rem;font-weight:700;}
 .btn-promo:hover{background:var(--green-dark);}
-.main{padding:26px 34px 60px;}
+.main{padding:26px 48px 60px;}
 .results-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
 .rc{font-size:.86rem;color:var(--gray);}
 .rc strong{color:var(--ink);font-size:.98rem;font-weight:700;}
@@ -530,7 +530,7 @@ footer{background:#0a0a09;border-top:1px solid #1c1c1a;padding:48px 40px 24px;}
   .btn-h1{padding:8px 16px;font-size:.78rem;}
   .btn-h2{padding:7px 14px;font-size:.78rem;}
   .search-wrap{padding:10px 16px;}.city-tabs{padding:0 14px;}
-  .page{grid-template-columns:1fr;}.sidebar{display:none;}.main{padding:14px 14px 50px;}
+  .page{grid-template-columns:1fr;}.sidebar{display:none;}.main{padding:16px 24px 50px;}
   .card-right{display:none;}footer{padding:32px 18px 20px;}.ft-grid{grid-template-columns:1fr 1fr;gap:20px;}
 }
 @media(max-width:520px){
@@ -1786,14 +1786,14 @@ input:focus,select:focus,textarea:focus{
 .cp-body{overflow-y:auto;flex:1;}
 
 /* Overview */
-.cp-overview{padding:20px;}
+.cp-overview{padding:16px;}
 .cp-desc-box{
   background:#f8fffe;border:1.5px solid #e0fdf0;border-radius:14px;
   padding:16px;margin-bottom:16px;font-size:.86rem;line-height:1.7;color:#333;
 }
 .cp-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
 .cp-info-item{
-  background:#fafafa;border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;
+  background:#fafafa;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;
 }
 .cp-info-label{
   font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;
@@ -1818,7 +1818,7 @@ input:focus,select:focus,textarea:focus{
 /* Fleet in drawer */
 .cp-fleet-body{padding:8px 0;}
 .cp-fleet-body .fleet-group{padding:14px 20px 10px;}
-.cp-fleet-body .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px;}
+.cp-fleet-body .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;}
 .cp-fleet-body .vcard{cursor:pointer;transition:all .18s;}
 .cp-fleet-body .vcard:hover{border-color:#00D26A;box-shadow:0 4px 14px rgba(0,210,106,.15);transform:translateY(-2px);}
 .cp-fleet-body .fleet-note{
@@ -2033,7 +2033,7 @@ nav a:hover { background:var(--off) !important; color:var(--ink) !important; bor
 
 /* ── MAIN AREA ── */
 .main {
-  background:#fff !important; padding:28px 32px 80px !important;
+  background:#fff !important; padding:28px 48px 80px !important;
   min-height:100vh;
 }
 .rc { font-size:.88rem !important; color:var(--gray) !important; margin-bottom:16px !important; }
@@ -2054,8 +2054,8 @@ nav a:hover { background:var(--off) !important; color:var(--ink) !important; bor
 /* ── COMPANY CARDS — TURO PHOTO TILES ── */
 .clist {
   display:grid !important;
-  grid-template-columns:repeat(auto-fill, minmax(260px,1fr)) !important;
-  gap:24px !important; padding-bottom:8px !important;
+  grid-template-columns:repeat(auto-fill, minmax(240px,1fr)) !important;
+  gap:20px !important; padding:0 !important; margin:0 0 8px !important;
 }
 
 .company-card {
@@ -2319,8 +2319,8 @@ footer { background:#1a1a1a !important; border-top:none !important; }
   .sidebar { position:static !important; max-height:none !important; border-right:none !important; border-bottom:1px solid var(--border) !important; }
   header { padding:0 20px !important; }
   .city-tabs { padding:0 16px !important; }
-  .main { padding:20px 16px 60px !important; }
-  .clist { grid-template-columns:repeat(2,1fr) !important; gap:14px !important; }
+  .main { padding:20px 24px 60px !important; }
+  .clist { grid-template-columns:repeat(2,1fr) !important; gap:16px !important; }
   .hero-inner { padding:36px 20px 32px; }
   .hero-search {
     flex-direction:column; border-radius:16px !important;
@@ -2429,7 +2429,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
     <!-- Turo-style inline search form -->
     <div class="hero-search">
       <div class="hs-field hs-city">
-        <label>📍 City</label>
+        <label>City</label>
         <select id="hsCitySelect" onchange="syncCityDropdown(this);applyFilters()">
           <option value="all">All Cities</option>
           <option value="Lagos">Lagos</option>
@@ -2445,7 +2445,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
       </div>
       <div class="hs-divider"></div>
       <div class="hs-field hs-service">
-        <label>🚗 Service</label>
+        <label>Service</label>
         <select id="hsServiceSelect" onchange="document.getElementById('fs').value=this.value;applyFilters()">
           <option value="all">Any Service</option>
           <option value="Airport">Airport Transfer</option>
@@ -2458,7 +2458,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
       </div>
       <div class="hs-divider"></div>
       <div class="hs-field hs-vehicle sug-wrap">
-        <label>🔍 Vehicle or Company</label>
+        <label>Vehicle or Company</label>
         <input type="text" id="hsVehicleInput" placeholder="e.g. Prado, SUV, Avis…" oninput="document.getElementById('fv').value=this.value;onVehicleInput()" autocomplete="off">
         <div class="search-suggestions" id="sugBox"></div>
       </div>
@@ -2466,10 +2466,10 @@ footer { background:#1a1a1a !important; border-top:none !important; }
     </div>
 
     <div class="hero-trust">
-      <span>✅ 50+ verified companies</span>
-      <span>💰 Real ₦ pricing</span>
-      <span>🤝 We book for you</span>
-      <span>⭐ Customer reviews</span>
+      <span>50+ verified companies</span>
+      <span>Real ₦ pricing</span>
+      <span>We book for you</span>
+      <span>Customer reviews</span>
     </div>
   </div>
 </section>
@@ -2521,16 +2521,16 @@ footer { background:#1a1a1a !important; border-top:none !important; }
 <div class="city-tabs-wrap">
   <div class="city-tabs">
     <button class="ctab active" onclick="filterCity('all',this)">All Cities</button>
-    <button class="ctab" onclick="filterCity('International',this)">🌍 International</button>
-    <button class="ctab" onclick="filterCity('Lagos',this)">🌊 Lagos</button>
-    <button class="ctab" onclick="filterCity('Abuja',this)">🏛️ Abuja</button>
-    <button class="ctab" onclick="filterCity('Port Harcourt',this)">⚓ Port Harcourt</button>
-    <button class="ctab" onclick="filterCity('Enugu',this)">🏙️ Enugu</button>
-    <button class="ctab" onclick="filterCity('Warri',this)">⚙️ Warri/Delta</button>
-    <button class="ctab" onclick="filterCity('Ibadan',this)">🌿 Ibadan</button>
-    <button class="ctab" onclick="filterCity('Kano',this)">🕌 Kano</button>
-    <button class="ctab" onclick="filterCity('Owerri',this)">🌴 Owerri</button>
-    <button class="ctab" onclick="filterCity('Nationwide',this)">🇳🇬 Nationwide</button>
+    <button class="ctab" onclick="filterCity('International',this)">International</button>
+    <button class="ctab" onclick="filterCity('Lagos',this)">Lagos</button>
+    <button class="ctab" onclick="filterCity('Abuja',this)">Abuja</button>
+    <button class="ctab" onclick="filterCity('Port Harcourt',this)">Port Harcourt</button>
+    <button class="ctab" onclick="filterCity('Enugu',this)">Enugu</button>
+    <button class="ctab" onclick="filterCity('Warri',this)">Warri/Delta</button>
+    <button class="ctab" onclick="filterCity('Ibadan',this)">Ibadan</button>
+    <button class="ctab" onclick="filterCity('Kano',this)">Kano</button>
+    <button class="ctab" onclick="filterCity('Owerri',this)">Owerri</button>
+    <button class="ctab" onclick="filterCity('Nationwide',this)">Nationwide</button>
   </div>
 </div>
 
@@ -2558,7 +2558,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
 </aside>
 
 <main class="main" id="main">
-  <div class="results-bar"><p class="rc">Showing <strong id="rcount">65+</strong> companies</p></div>
+  <div class="results-bar"><p class="rc">Showing <strong id="rcount">51</strong> companies</p></div>
   <!-- VEHICLE SEARCH RESULTS PANEL -->
   <div id="vehicleResults">
     <div class="vr-heading">🚗 Vehicles matching your search &nbsp;<span class="vr-count" id="vrCount">0</span></div>
@@ -2569,7 +2569,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
 
   <!-- INTERNATIONAL -->
   <div class="sec-hdr" id="intl">
-    <div class="sec-left"><div class="sec-emoji">🌍</div><div><div class="sec-title"><span>International</span> Brands</div><div class="sec-sub">Global car rental companies with Nigerian operations</div></div></div>
+    <div class="sec-left"><div><div class="sec-title"><span>International</span> Brands</div><div class="sec-sub">Global car rental companies with Nigerian operations</div></div></div>
     <span class="sec-count">4 companies</span>
   </div>
   <div class="clist">
@@ -2711,8 +2711,8 @@ footer { background:#1a1a1a !important; border-top:none !important; }
 
   <!-- LAGOS -->
   <div class="sec-hdr" id="lagos">
-    <div class="sec-left"><div class="sec-emoji">🌊</div><div><div class="sec-title"><span>Lagos</span> Car Rental Companies</div><div class="sec-sub">Nigeria's commercial capital</div></div></div>
-    <span class="sec-count">4 companies</span>
+    <div class="sec-left"><div><div class="sec-title"><span>Lagos</span> Car Rental Companies</div><div class="sec-sub">Nigeria's commercial capital</div></div></div>
+    <span class="sec-count">19 companies</span>
   </div>
   <div class="clist">
     <!-- NaijaCarhire -->
@@ -3293,8 +3293,8 @@ footer { background:#1a1a1a !important; border-top:none !important; }
 
   <!-- ABUJA -->
   <div class="sec-hdr" id="abuja">
-    <div class="sec-left"><div class="sec-emoji">🏛️</div><div><div class="sec-title"><span>Abuja (FCT)</span> Car Rental Companies</div><div class="sec-sub">Nigeria's federal capital</div></div></div>
-    <span class="sec-count">3 companies</span>
+    <div class="sec-left"><div><div class="sec-title"><span>Abuja (FCT)</span> Car Rental Companies</div><div class="sec-sub">Nigeria's federal capital</div></div></div>
+    <span class="sec-count">16 companies</span>
   </div>
   <div class="clist">
     <div class="company-card" data-city="Abuja" data-type="Local" data-svc="Airport Corporate" data-cid="co-capital-rides-abuja" data-action="open-profile-card">
@@ -3721,12 +3721,11 @@ footer { background:#1a1a1a !important; border-top:none !important; }
         <div class="fleet-body"><div class="fleet-group"><div class="fg-label">🚗 Fleet</div><div class="vgrid"><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Corolla</div><div class="vcar-type">Economy Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦75,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Camry</div><div class="vcar-type">Executive Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦90,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Toyota Prado</div><div class="vcar-type">Mid SUV</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦125,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div></div></div></div>
       </div>
     </div>
-  </div><!-- clist -->
   </div><!-- /abuja -->
 
   <!-- PORT HARCOURT -->
   <div class="sec-hdr" id="ph">
-    <div class="sec-left"><div class="sec-emoji">⚓</div><div><div class="sec-title"><span>Port Harcourt</span> Car Rental Companies</div><div class="sec-sub">Rivers State — Nigeria's oil &amp; gas hub</div></div></div>
+    <div class="sec-left"><div><div class="sec-title"><span>Port Harcourt</span> Car Rental Companies</div><div class="sec-sub">Rivers State — Nigeria's oil &amp; gas hub</div></div></div>
     <span class="sec-count">2 companies</span>
   </div>
   <div class="clist">
@@ -3797,7 +3796,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
 
   <!-- OTHER CITIES -->
   <div class="sec-hdr" id="others">
-    <div class="sec-left"><div class="sec-emoji">🗺️</div><div><div class="sec-title">Other <span>Cities</span></div><div class="sec-sub">Enugu · Ibadan · Kano · Warri · Benin · Owerri</div></div></div>
+    <div class="sec-left"><div><div class="sec-title">Other <span>Cities</span></div><div class="sec-sub">Enugu · Ibadan · Kano · Warri · Benin · Owerri</div></div></div>
     <span class="sec-count">7 companies</span>
   </div>
   <div class="clist">
@@ -3998,14 +3997,12 @@ footer { background:#1a1a1a !important; border-top:none !important; }
         <div class="fleet-body"><div class="fleet-group"><div class="fg-label">🚗 Fleet</div><div class="vgrid"><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Corolla</div><div class="vcar-type">Economy Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦60,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚗</div><div><div class="vcar-name">Toyota Camry</div><div class="vcar-type">Executive Saloon</div></div></div><div class="vcard-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦80,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div><div class="vcard" style="cursor:pointer" onclick="openBooking(this)"><div class="vcard-top"><div class="vcar-icon">🚙</div><div><div class="vcar-name">Toyota Prado</div><div class="vcar-type">Mid SUV</div></div></div><div class=card-body"><div class="vcar-row"><span class="vcar-key">Daily Rate</span><span class="vcar-price">₦120,000<span class="vcar-price-unit">/day</span></span></div><div class="vcar-row"><div class="avail yes"><div class="avail-dot"></div>Available</div></div></div></div></div></div></div>
       </div>
     </div>
-  </div><!-- clist -->
-  </div><!-- clist2 -->
   </div><!-- /others -->
 
   <!-- NATIONWIDE -->
   <div class="sec-hdr" id="national">
-    <div class="sec-left"><div class="sec-emoji">🇳🇬</div><div><div class="sec-title"><span>Nationwide</span> Fleet &amp; Corporate</div><div class="sec-sub">Multi-state corporate fleet providers</div></div></div>
-    <span class="sec-count">2 companies</span>
+    <div class="sec-left"><div><div class="sec-title"><span>Nationwide</span> Fleet &amp; Corporate</div><div class="sec-sub">Multi-state corporate fleet providers</div></div></div>
+    <span class="sec-count">3 companies</span>
   </div>
   <div class="clist">
     <div class="company-card" data-city="Lagos Abuja Port Harcourt Nationwide" data-type="Local" data-svc="Corporate Airport Armoured" data-cid="co-candi-leasing-plc-fleet-division" data-action="open-profile-card">
@@ -4108,7 +4105,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
   <!-- APPROVED LISTINGS (dynamically injected) -->
   <div id="approved-section" style="display:none">
     <div class="sec-hdr" id="approved-listings">
-      <div class="sec-left"><div class="sec-emoji">✅</div><div><div class="sec-title"><span>New</span> Listings</div><div class="sec-sub">Recently approved companies on DriveDir</div></div></div>
+      <div class="sec-left"><div><div class="sec-title"><span>New</span> Listings</div><div class="sec-sub">Recently approved companies on DriveDir</div></div></div>
       <span class="sec-count" id="approved-count">0 companies</span>
     </div>
     <div class="clist" id="approved-clist"></div>
@@ -4651,7 +4648,16 @@ function applyFilters() {
 
   if (!isFiltered) {
     // --- Default "All Cities" view: restore original sectioned layout ---
-    allCards.forEach(function(card) { card.style.display = ''; });
+    // First restore any cards that were moved into unified-results
+    allCards.forEach(function(card) {
+      if (card._origParent) {
+        if (card._origNextSib) card._origParent.insertBefore(card, card._origNextSib);
+        else card._origParent.appendChild(card);
+      }
+      card.style.display = '';
+    });
+    var unified = document.getElementById('unified-results');
+    if (unified) unified.style.display = 'none';
     document.querySelectorAll('.sec-hdr').forEach(function(hdr) { hdr.style.display = ''; });
     document.querySelectorAll('.clist').forEach(function(cl) { cl.style.display = ''; });
   } else {
@@ -4668,7 +4674,7 @@ function applyFilters() {
       unified = document.createElement('div');
       unified.id = 'unified-results';
       unified.className = 'clist';
-      unified.style.cssText = 'padding:0 40px 40px;box-sizing:border-box;';
+      unified.style.cssText = 'padding:0 2px 40px;box-sizing:border-box;';
       var main = document.getElementById('main');
       if (main) {
         // Insert after the no-results div
@@ -6098,9 +6104,9 @@ function submitContact(){
       <div class="cp-hdr-badges" id="cpBadges"></div>
     </div>
     <div class="cp-tabs" id="cpTabs">
-      <button class="cp-tab active" data-tab="overview" onclick="cpTab(this)">🏢 Overview</button>
-      <button class="cp-tab" data-tab="fleet" onclick="cpTab(this)">🚗 Fleet &amp; Prices</button>
-      <button class="cp-tab" data-tab="reviews" onclick="cpTab(this)">⭐ Reviews</button>
+      <button class="cp-tab active" data-tab="overview" onclick="cpTab(this)">Overview</button>
+      <button class="cp-tab" data-tab="fleet" onclick="cpTab(this)">Fleet &amp; Prices</button>
+      <button class="cp-tab" data-tab="reviews" onclick="cpTab(this)">Reviews</button>
     </div>
     <div class="cp-body" id="cpBody">
       <!-- populated by JS -->
@@ -6789,15 +6795,14 @@ function cpRenderOverview(body) {
   var starsStr = cmeta ? cmeta.innerHTML : '';
 
   var svcList = dataSvc.split(' ').filter(Boolean).map(function(s){
-    var icons = {Airport:'✈️',Corporate:'🏢',Self:'🔑',Wedding:'💒',Armoured:'🛡️',VIP:'🛡️',Interstate:'🛣️'};
-    return '<span style="background:#f0fdf6;border:1px solid #a7f3d0;color:#00875A;border-radius:6px;padding:3px 9px;font-size:.75rem;font-weight:600;font-family:Space Grotesk,sans-serif;">' + (icons[s]||'🚗') + ' ' + s + '</span>';
+    return '<span style="background:#f0fdf6;border:1px solid #a7f3d0;color:#00875A;border-radius:6px;padding:3px 9px;font-size:.75rem;font-weight:600;font-family:Space Grotesk,sans-serif;">' + s + '</span>';
   }).join('');
 
   var infoItems = [
-    { lbl: '📍 Locations', val: dataCity.replace(/\s+/g,' ') || '—' },
-    { lbl: '💰 Starting Price', val: (psFrom ? psFrom.textContent : '—') + ' ' + (psUnit ? psUnit.textContent : '') },
-    { lbl: '🚗 Fleet Size', val: ftCount ? ftCount.textContent : '—' },
-    { lbl: '⭐ Rating', val: avgScore ? avgScore + '/5 (' + reviews.length + ' reviews)' : (cmeta ? cmeta.textContent.trim() : '—') }
+    { lbl: 'Locations', val: dataCity.replace(/\s+/g,' ') || '—' },
+    { lbl: 'Starting Price', val: (psFrom ? psFrom.textContent : '—') + ' ' + (psUnit ? psUnit.textContent : '') },
+    { lbl: 'Fleet Size', val: ftCount ? ftCount.textContent : '—' },
+    { lbl: 'Rating', val: avgScore ? avgScore + '/5 (' + reviews.length + ' reviews)' : (cmeta ? cmeta.textContent.trim() : '—') }
   ];
 
   var infoHTML = infoItems.map(function(i){
@@ -6810,8 +6815,8 @@ function cpRenderOverview(body) {
       (svcList ? '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">' + svcList + '</div>' : '') +
       '<div class="cp-info-grid">' + infoHTML + '</div>' +
       '<div class="cp-actions">' +
-        '<button class="cp-book-btn" onclick="cpBookNow()">📅 Book a Vehicle →</button>' +
-        '<button class="cp-review-btn" onclick="cpOpenReview()">✍ Review</button>' +
+        '<button class="cp-book-btn" onclick="cpBookNow()">Book a Vehicle →</button>' +
+        '<button class="cp-review-btn" onclick="cpOpenReview()">Write a Review</button>' +
       '</div>' +
     '</div>';
 }
@@ -6929,6 +6934,12 @@ function cpOpenReview() {
 
 /* ── Init on DOMContentLoaded ─────────────────── */
 document.addEventListener('DOMContentLoaded', function() {
+  // Cache each card's original parent and sibling for restoration after filtering
+  document.querySelectorAll('.company-card').forEach(function(card) {
+    card._origParent = card.parentNode;
+    card._origNextSib = card.nextSibling;
+  });
+
   enhanceCards();
 
   // Auto-open booking modal if URL contains #book
@@ -6969,4 +6980,48 @@ function enhanceLogos() {
     if (!domain) return;
 
     // Already enhanced
-    if (card.querySelector('.logo-favico
+    if (card.querySelector('.logo-favicon')) return;
+
+    var logoBox = card.querySelector('.card-logo');
+    var lc = card.querySelector('.lc');
+    if (!logoBox || !lc) return;
+
+    var img = document.createElement('img');
+    img.className = 'logo-favicon';
+    img.src = 'https://www.google.com/s2/favicons?domain=' + domain + '&sz=128';
+    img.alt = domain;
+    img.style.cssText = [
+      'width:72px',
+      'height:72px',
+      'object-fit:contain',
+      'border-radius:16px',
+      'background:#ffffff',
+      'padding:8px',
+      'box-shadow:0 4px 20px rgba(0,0,0,0.3)',
+      'position:relative',
+      'z-index:2',
+      'display:block',
+    ].join(';');
+
+    lc.style.display = 'none';
+    var cname = card.querySelector('.cname');
+    if (cname) cname.style.display = 'none';
+    img.onerror = function() {
+      img.style.display = 'none';
+      lc.style.display = '';
+      if (cname) cname.style.display = '';
+    };
+    logoBox.insertBefore(img, lc);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', enhanceLogos);
+var _origApplyFilters = applyFilters;
+applyFilters = function() {
+  _origApplyFilters.apply(this, arguments);
+  setTimeout(enhanceLogos, 100);
+};
+</script>
+
+</body>
+</html>
