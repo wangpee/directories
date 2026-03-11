@@ -4125,7 +4125,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
     <div class="ft-col"><h4>Services</h4><a href="#">🔑 Self-Drive</a><a href="#">✈️ Airport Transfer</a><a href="#">💒 Wedding Cars</a><a href="#">🛡 Armoured VIP</a><a href="#">🏢 Corporate Fleet</a></div>
     <div class="ft-col"><h4>Company</h4><a href="javascript:void(0)" onclick="openAbout()">About DriveDir</a><a href="javascript:void(0)" onclick="openModal()">List Your Business</a><a href="javascript:void(0)" onclick="openContact()">Contact Us</a></div>
     <div class="ft-col"><h4>Connect</h4>
-      <a href="mailto:contact@drivedir.com" style="display:flex;align-items:center;gap:7px;">
+      <a href="javascript:void(0)" onclick="window.location.href='mai'+'lto:contact@drivedir.com'" style="display:flex;align-items:center;gap:7px;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.7;flex-shrink:0"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         contact@drivedir.com
       </a>
@@ -4245,7 +4245,7 @@ footer { background:#1a1a1a !important; border-top:none !important; }
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* SCROLL */
 const sp=document.getElementById('sp'),btt=document.getElementById('btt');
 window.addEventListener('scroll',()=>{
@@ -5889,7 +5889,7 @@ function submitContact(){
           <div style="font-size:.82rem;color:#047857;">We reply within 24 hours</div>
         </div>
       </div>
-      <a href="mailto:contact@drivedir.com" style="display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;padding:9px 18px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;white-space:nowrap;box-shadow:0 2px 10px rgba(0,122,110,.25);">
+      <a href="javascript:void(0)" onclick="window.location.href='mai'+'lto:contact@drivedir.com'" style="display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;padding:9px 18px;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;white-space:nowrap;box-shadow:0 2px 10px rgba(0,122,110,.25);">
         contact@drivedir.com →
       </a>
     </div>
@@ -5903,7 +5903,7 @@ function submitContact(){
 
     <!-- Contact channels -->
     <div class="ct-channels">
-      <div class="ct-channel"><div class="ct-ch-icon">📧</div><div><div class="ct-ch-label">Email</div><div class="ct-ch-val"><a href="mailto:contact@drivedir.com" style="color:inherit;">contact@drivedir.com</a></div></div></div>
+      <div class="ct-channel"><div class="ct-ch-icon">📧</div><div><div class="ct-ch-label">Email</div><div class="ct-ch-val"><a href="javascript:void(0)" onclick="window.location.href='mai'+'lto:contact@drivedir.com'" style="color:inherit;">contact@drivedir.com</a></div></div></div>
       <div class="ct-channel"><div class="ct-ch-icon">📍</div><div><div class="ct-ch-label">Based In</div><div class="ct-ch-val">Nigeria 🇳🇬</div></div></div>
       <div class="ct-channel"><div class="ct-ch-icon">⏱️</div><div><div class="ct-ch-label">Response Time</div><div class="ct-ch-val">Within 24 hours</div></div></div>
     </div>
@@ -6093,7 +6093,7 @@ function submitContact(){
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ═══════════════════════════════════════════════
    DRIVEDIR  ·  REVIEW SYSTEM  ·  localStorage
 ═══════════════════════════════════════════════ */
@@ -6919,26 +6919,4 @@ function enhanceLogos() {
       'height:72px',
       'object-fit:contain',
       'border-radius:16px',
-      'background:#ffffff',
-      'padding:8px',
-      'box-shadow:0 4px 20px rgba(0,0,0,0.3)',
-      'position:relative',
-      'z-index:2',
-      'display:block',
-    ].join(';');
-
-    // Show img immediately, hide lc text — onerror restores it
-    lc.style.display = 'none';
-    // Also hide the .cname text since logo already identifies the company
-    var cname = card.querySelector('.cname');
-    if (cname) cname.style.display = 'none';
-    img.onerror = function() {
-      img.style.display = 'none';
-      lc.style.display = '';
-      if (cname) cname.style.display = '';
-    };
-    logoBox.insertBefore(img, lc);
-  });
-}
-
-document.addEve
+      'background:#fff
